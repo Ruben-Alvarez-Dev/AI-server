@@ -1,0 +1,14 @@
+{"ts": "2025-08-23T05:48:41.000Z", "action": "project_initialization", "meta": {"task": "VSCode R2R Integration", "user": "server", "description": "Iniciando integración completa VSCode con R2R para capturar toda la actividad de desarrollo"}}
+{"ts": "2025-08-23T05:13:02.000Z", "action": "create_file", "meta": {"file": "plan/PLAN.md", "description": "Plan maestro con índice y fases detalladas", "size_kb": 12.5}}
+{"ts": "2025-08-23T05:14:08.000Z", "action": "update_file", "meta": {"file": "vscode-r2r-activity/package.json", "description": "Añadida configuración de extensión VSCode con activationEvents y contributes.configuration"}}
+{"ts": "2025-08-23T05:15:13.000Z", "action": "create_file", "meta": {"file": "vscode-r2r-activity/src/extension.ts", "description": "Implementación completa de extensión VSCode con buffer, retry, git polling y modo offline", "size_kb": 15.2}}
+{"ts": "2025-08-23T05:45:13.000Z", "action": "create_file", "meta": {"file": "R2R/py/core/main/api/v3/activity_router.py", "description": "Router FastAPI para endpoints de actividad con esquemas Pydantic", "size_kb": 8.7}}
+{"ts": "2025-08-23T05:45:56.000Z", "action": "update_file", "meta": {"file": "R2R/py/core/main/assembly/builder.py", "description": "Añadido ActivityRouterV3 al builder de R2R"}}
+{"ts": "2025-08-23T05:46:13.000Z", "action": "update_file", "meta": {"file": "R2R/py/core/main/assembly/builder.py", "description": "Registrado activity_router en el diccionario de routers"}}
+{"ts": "2025-08-23T05:46:29.000Z", "action": "update_file", "meta": {"file": "R2R/py/core/main/app.py", "description": "Añadido import de ActivityRouterV3"}}
+{"ts": "2025-08-23T05:46:41.000Z", "action": "update_file", "meta": {"file": "R2R/py/core/main/app.py", "description": "Añadido activity_router al constructor de R2RApp"}}
+{"ts": "2025-08-23T05:46:53.000Z", "action": "update_file", "meta": {"file": "R2R/py/core/main/app.py", "description": "Añadido activity_router como atributo de instancia"}}
+{"ts": "2025-08-23T05:47:07.000Z", "action": "update_file", "meta": {"file": "R2R/py/core/main/app.py", "description": "Registrado activity_router en _setup_routes con prefijo /v3"}}
+{"ts": "2025-08-23T05:47:40.000Z", "action": "create_file", "meta": {"file": "R2R/test_activity_endpoint.py", "description": "Script de prueba completo para verificar endpoints de actividad", "size_kb": 6.8}}
+{"ts": "2025-08-23T05:48:41.000Z", "action": "create_file", "meta": {"file": "vscode-r2r-activity/README.md", "description": "Documentación completa de la extensión con instalación, configuración y uso", "size_kb": 18.3}}
+{"ts": "2025-08-23T05:48:41.000Z", "action": "create_file", "meta": {"file": "plan/logs.txt", "description": "Registro de auditoría de todas las acciones realizadas"}}

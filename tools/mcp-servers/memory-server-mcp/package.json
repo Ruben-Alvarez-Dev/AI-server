@@ -1,0 +1,38 @@
+{
+  "name": "memory-server-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for Memory-Server AI RAG system with LazyGraphRAG and Late Chunking",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "memory-server",
+    "rag",
+    "ai",
+    "anthropic",
+    "claude",
+    "tools"
+  ],
+  "author": "AI-Server Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "axios": "^1.6.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ai-server/memory-server.git",
+    "directory": "tools/mcp-servers/memory-server-mcp"
+  }
+}

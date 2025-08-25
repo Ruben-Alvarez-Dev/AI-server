@@ -18,14 +18,15 @@ from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.openapi.utils import get_openapi
 
 import uvicorn
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 # Import our modules
 from .api import (
     workflow_router,
     agent_router, 
     health_router,
-    monitoring_router
+    monitoring_router,
+    openai_adapter
 )
 from .core import (
     AgentManager,
@@ -237,6 +238,8 @@ def create_app() -> FastAPI:
     app.include_router(workflow_router, prefix="/workflows", tags=["Workflows"])
     app.include_router(agent_router, prefix="/agents", tags=["Agents"])
     app.include_router(monitoring_router, prefix="/monitoring", tags=["Monitoring"])
+    # OpenAI-compatible adapter (exposes /v1/* endpoints)
+    app.include_router(openai_adapter.router, prefix="", tags=["OpenAI-Compat"])
     
     # Root endpoint
     @app.get("/", tags=["Root"])

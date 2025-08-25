@@ -214,7 +214,7 @@ async def main():
     import argparse
     
     parser = argparse.ArgumentParser(description="Download LLM Server models")
-    parser.add_argument("--models-dir", default="./llm-server/models", help="Models directory")
+    parser.add_argument("--models-dir", default="./models", help="Models directory")
     parser.add_argument("--force", action="store_true", help="Force re-download")
     parser.add_argument("--skip-large", action="store_true", help="Skip models larger than 15GB")
     parser.add_argument("--model", help="Download specific model only")

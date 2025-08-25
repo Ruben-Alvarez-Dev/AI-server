@@ -1,0 +1,91 @@
+[tool.poetry]
+name = "memory-server"
+version = "1.0.0"
+description = "Next-generation RAG system with LazyGraphRAG and Late Chunking"
+authors = ["AI-Server Team"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+# Core ML/AI
+sentence-transformers = "^2.5.1"
+transformers = "^4.38.0" 
+torch = "^2.2.0"
+jina = "^3.25.0"
+
+# Vector Stores
+faiss-cpu = "^1.7.4"  # M1 optimized
+chromadb = "^0.4.22"
+
+# Graph Database
+neo4j = "^5.17.0"
+networkx = "^3.2.1"
+python-igraph = "^0.11.3"
+
+# Text Processing
+langchain = "^0.1.9"
+langchain-community = "^0.0.20"
+spacy = "^3.7.2"
+nltk = "^3.8.1"
+beautifulsoup4 = "^4.12.3"
+
+# API Framework
+fastapi = "^0.109.2"
+uvicorn = {extras = ["standard"], version = "^0.27.0"}
+websockets = "^12.0"
+grpcio = "^1.60.0"
+graphql-core = "^3.2.3"
+
+# Async/Performance
+aiohttp = "^3.9.3"
+aiofiles = "^23.2.0"
+asyncpg = "^0.29.0"
+
+# Data Processing
+pandas = "^2.2.0"
+numpy = "^1.26.4"
+pyarrow = "^15.0.0"
+sqlalchemy = "^2.0.25"
+
+# Computer Vision/OCR
+pillow = "^10.2.0"
+opencv-python = "^4.9.0"
+pytesseract = "^0.3.10"
+easyocr = "^1.7.0"
+
+# Monitoring/Logging
+prometheus-client = "^0.19.0"
+structlog = "^24.1.0"
+rich = "^13.7.0"
+
+# Additional dependencies
+scikit-learn = "^1.4.0"
+python-multipart = "^0.0.9"
+pydantic = "^2.6.0"
+click = "^8.1.7"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-asyncio = "^0.23.5"
+black = "^24.2.0"
+isort = "^5.13.2"
+mypy = "^1.8.0"
+pre-commit = "^3.6.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true

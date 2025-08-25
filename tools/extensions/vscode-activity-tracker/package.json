@@ -1,0 +1,195 @@
+{
+  "name": "memory-server-activity-tracker",
+  "displayName": "Memory-Server Activity Tracker",
+  "description": "Extension for tracking development activity in VSCode and Memory-Server with intelligent auto-tagging.",
+  "version": "1.0.0",
+  "publisher": "ai-server-team",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "icon": "icon.png",
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "activity-tracking",
+    "memory-server",
+    "ai",
+    "rag",
+    "development-analytics"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "contributes": {
+    "configuration": {
+      "title": "Memory-Server Activity Tracker",
+      "properties": {
+        "memoryServerActivity.apiUrl": {
+          "type": "string",
+          "default": "http://localhost:8001/api/v1/documents/activity",
+          "description": "Memory-Server API endpoint for activity tracking"
+        },
+        "memoryServerActivity.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable activity tracking"
+        },
+        "memoryServerActivity.workspace": {
+          "type": "string",
+          "default": "code",
+          "description": "Default workspace for development activities",
+          "enum": ["code", "research", "projects", "personal"],
+          "enumDescriptions": [
+            "Code development activities",
+            "Research and documentation",
+            "Project management and planning",
+            "Personal notes and ideas"
+          ]
+        },
+        "memoryServerActivity.maxFileSizeBytes": {
+          "type": "number",
+          "default": 1048576,
+          "description": "Maximum file size to track (1MB default)"
+        },
+        "memoryServerActivity.captureTerminalCommands": {
+          "type": "boolean",
+          "default": false,
+          "description": "Capture terminal command execution"
+        },
+        "memoryServerActivity.autoTag": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable intelligent auto-tagging of activities"
+        },
+        "memoryServerActivity.excludedPatterns": {
+          "type": "array",
+          "default": ["node_modules", ".git", "*.log", "*.tmp"],
+          "description": "File patterns to exclude from tracking"
+        },
+        "memoryServerActivity.redactPatterns": {
+          "type": "array",
+          "default": ["API_KEY", "PRIVATE_KEY", "PASSWORD", "SECRET", "TOKEN", "AUTH"],
+          "description": "Patterns to redact from tracked content for security"
+        },
+        "memoryServerActivity.offlineStoragePath": {
+          "type": "string",
+          "default": "memory-server-activity/offline_events.jsonl",
+          "description": "Path for offline event storage"
+        },
+        "memoryServerActivity.flushInterval": {
+          "type": "number",
+          "default": 5000,
+          "description": "Interval in milliseconds to flush events to Memory-Server"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "memoryServerActivity",
+          "title": "Memory-Server Activity",
+          "icon": "$(database)"
+        }
+      ]
+    },
+    "views": {
+      "memoryServerActivity": [
+        {
+          "id": "memoryServerActivityView",
+          "name": "Activity Tracker",
+          "icon": "$(file-media)",
+          "contextualTitle": "Memory-Server Activity"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "memoryServerActivity.toggleCapture",
+        "title": "Toggle Activity Capture",
+        "icon": "$(record)"
+      },
+      {
+        "command": "memoryServerActivity.openSettings",
+        "title": "Open Settings",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "memoryServerActivity.viewStatus",
+        "title": "View Status",
+        "icon": "$(info)"
+      },
+      {
+        "command": "memoryServerActivity.clearOfflineData",
+        "title": "Clear Offline Data",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "memoryServerActivity.switchWorkspace",
+        "title": "Switch Workspace",
+        "icon": "$(folder-library)"
+      },
+      {
+        "command": "memoryServerActivity.generateSummary",
+        "title": "Generate Activity Summary",
+        "icon": "$(file-text)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "memoryServerActivity.toggleCapture",
+          "when": "view == memoryServerActivityView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "memoryServerActivity.switchWorkspace",
+          "when": "view == memoryServerActivityView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "memoryServerActivity.openSettings",
+          "when": "view == memoryServerActivityView",
+          "group": "navigation@3"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "memoryServerActivity.generateSummary",
+          "when": "view == memoryServerActivityView && viewItem == activitySummary"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "memoryServerActivity.toggleCapture",
+          "title": "Memory-Server: Toggle Activity Capture"
+        },
+        {
+          "command": "memoryServerActivity.switchWorkspace",
+          "title": "Memory-Server: Switch Workspace"
+        },
+        {
+          "command": "memoryServerActivity.generateSummary",
+          "title": "Memory-Server: Generate Activity Summary"
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.70.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ai-server/memory-server.git"
+  },
+  "license": "MIT"
+}
