@@ -145,9 +145,9 @@ app = FastAPI(
     """,
     version="1.0.0",
     contact={
-        "name": "AI-Server Team",
-        "url": "https://github.com/ai-server/memory-server",
-        "email": "contact@ai-server.dev"
+        "name": "Rubén Álvarez",
+        "url": "https://github.com/Ruben-Alvarez-Dev/AI-server",
+        "email": "ruben.alvarez.dev@gmail.com"
     },
     license_info={
         "name": "MIT",

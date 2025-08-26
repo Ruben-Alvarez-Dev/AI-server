@@ -286,6 +286,5 @@ redis-cli ping
 
 ---
 
-**Autor:** AI-Server Team  
-**Revisión:** Claude  
+**Autor:** Rubén Álvarez  
 **Estado:** PENDIENTE DE IMPLEMENTACIÓN

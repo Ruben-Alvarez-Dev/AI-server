@@ -2,7 +2,7 @@
 name = "memory-server"
 version = "1.0.0"
 description = "Next-generation RAG system with LazyGraphRAG and Late Chunking"
-authors = ["AI-Server Team"]
+authors = ["Rubén Álvarez <ruben.alvarez.dev@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

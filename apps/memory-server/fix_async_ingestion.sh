@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 🚀 Script de Corrección Rápida - Sistema de Ingesta Asíncrona
-# Autor: AI-Server Team
+# Autor: Rubén Álvarez
 # Fecha: 2025-08-26
 
 set -e  # Exit on error
