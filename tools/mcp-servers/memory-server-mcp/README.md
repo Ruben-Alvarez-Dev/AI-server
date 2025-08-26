@@ -6,6 +6,7 @@ Model Context Protocol (MCP) server for Memory-Server, enabling seamless integra
 
 - **🔍 Advanced Search**: LazyGraphRAG-powered document search across workspaces
 - **📄 Document Upload**: Intelligent document processing with auto-tagging
+- **📝 Smart Summarization**: Advanced LLM-powered summaries with multiple types (extractive, abstractive, technical, etc.)
 - **🌐 Web Scraping**: Advanced content extraction using Playwright + Serper/Firecrawl APIs
 - **📊 Activity Tracking**: Development activity monitoring for contextual AI assistance
 - **🗂️ Workspace Management**: Organized content silos for different project contexts
@@ -83,6 +84,38 @@ Search documents using advanced RAG with LazyGraphRAG and Late Chunking.
 ```typescript
 // Claude can now do:
 // "Search for Python async programming examples in the code workspace"
+```
+
+### `summarize_content`
+Generate summaries for provided content using advanced LLM-powered summarization.
+
+**Parameters:**
+- `content` (string): Content to summarize
+- `summary_type` (enum): extractive, abstractive, structured, bullet_points, technical, narrative (default: extractive)
+- `max_length` (number, optional): Maximum summary length in words
+- `workspace` (string, default: research): Workspace context for summarization
+
+**Example:**
+```typescript
+// Claude can now do:
+// "Summarize this code documentation in technical format"
+// "Create bullet-point summary of this research paper"
+```
+
+### `summarize_document`
+Generate summaries for existing documents with multiple summary types available.
+
+**Parameters:**
+- `document_id` (string): Document ID to summarize
+- `workspace` (string): Workspace containing the document
+- `summary_type` (enum): extractive, abstractive, structured, bullet_points, technical, narrative (default: extractive)
+- `regenerate` (boolean, default: false): Regenerate summary even if one exists
+
+**Example:**
+```typescript
+// Claude can now do:
+// "Summarize document doc_abc123 in the code workspace using technical format"
+// "Regenerate summary for document doc_xyz789 with structured format"
 ```
 
 ### `upload_document`

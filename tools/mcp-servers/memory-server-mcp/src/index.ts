@@ -60,6 +60,20 @@ const WebSearchSchema = z.object({
   auto_ingest: z.boolean().default(false).describe('Automatically ingest results')
 });
 
+const SummarizeContentSchema = z.object({
+  content: z.string().describe('Content to summarize'),
+  summary_type: z.enum(['extractive', 'abstractive', 'structured', 'bullet_points', 'technical', 'narrative']).default('extractive').describe('Type of summary to generate'),
+  max_length: z.number().optional().describe('Maximum summary length in words'),
+  workspace: z.string().default('research').describe('Workspace context for summarization')
+});
+
+const SummarizeDocumentSchema = z.object({
+  document_id: z.string().describe('Document ID to summarize'),
+  workspace: z.string().describe('Workspace containing the document'),
+  summary_type: z.enum(['extractive', 'abstractive', 'structured', 'bullet_points', 'technical', 'narrative']).default('extractive').describe('Type of summary to generate'),
+  regenerate: z.boolean().default(false).describe('Regenerate summary even if one exists')
+});
+
 const ActivityTrackingSchema = z.object({
   events: z.array(z.record(z.any())).describe('Array of activity events'),
   workspace: z.string().default('code').describe('Target workspace'),
@@ -138,6 +152,16 @@ class MemoryServerMCP {
             name: 'get_stats',
             description: 'Get Memory-Server processing statistics and performance metrics',
             inputSchema: z.object({}),
+          },
+          {
+            name: 'summarize_content',
+            description: 'Generate summary for provided content using advanced LLM-powered summarization',
+            inputSchema: SummarizeContentSchema,
+          },
+          {
+            name: 'summarize_document',
+            description: 'Generate summary for existing document with multiple summary types available',
+            inputSchema: SummarizeDocumentSchema,
           }
         ] satisfies Tool[],
       };
@@ -169,6 +193,12 @@ class MemoryServerMCP {
           
           case 'get_stats':
             return await this.getStats();
+          
+          case 'summarize_content':
+            return await this.summarizeContent(SummarizeContentSchema.parse(args));
+          
+          case 'summarize_document':
+            return await this.summarizeDocument(SummarizeDocumentSchema.parse(args));
           
           default:
             throw new Error(`Unknown tool: ${name}`);
@@ -440,6 +470,91 @@ ${result.workspaces.map((workspace: string) => `
       };
     } catch (error) {
       throw new Error(`Failed to get stats: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  private async summarizeContent(params: z.infer<typeof SummarizeContentSchema>): Promise<CallToolResult> {
+    try {
+      const response = await axios.post(`${BASE_API_URL}/documents/summarize/content`, {
+        content: params.content,
+        summary_type: params.summary_type,
+        max_length: params.max_length,
+        workspace: params.workspace
+      });
+
+      const result = response.data;
+
+      return {
+        content: [
+          {
+            type: 'text',
+            text: `# Content Summary ✅
+
+**Summary Type**: ${result.summary_type}
+**Confidence**: ${(result.confidence * 100).toFixed(1)}%
+**Model Used**: ${result.model_used}
+**Processing Time**: ${result.processing_time.toFixed(2)}s
+
+## Summary:
+${result.summary}
+
+${result.alternatives ? `
+## Alternative Summaries:
+${result.alternatives.map((alt: any, idx: number) => `
+### Alternative ${idx + 1} (${alt.type})
+${alt.summary}
+`).join('\n')}` : ''}
+
+*Summary generated using advanced LLM-powered summarization service*`,
+          },
+        ] satisfies TextContent[],
+      };
+    } catch (error) {
+      throw new Error(`Content summarization failed: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  private async summarizeDocument(params: z.infer<typeof SummarizeDocumentSchema>): Promise<CallToolResult> {
+    try {
+      const response = await axios.post(`${BASE_API_URL}/documents/summarize/document`, {
+        document_id: params.document_id,
+        workspace: params.workspace,
+        summary_type: params.summary_type,
+        regenerate: params.regenerate
+      });
+
+      const result = response.data;
+
+      return {
+        content: [
+          {
+            type: 'text',
+            text: `# Document Summary ✅
+
+**Document ID**: ${params.document_id}
+**Workspace**: ${params.workspace}
+**Summary Type**: ${result.summary_type}
+**Confidence**: ${(result.confidence * 100).toFixed(1)}%
+**Model Used**: ${result.model_used}
+**Processing Time**: ${result.processing_time.toFixed(2)}s
+${result.metadata?.cached ? '**Source**: Cached (existing summary)' : '**Source**: Newly generated'}
+
+## Summary:
+${result.summary}
+
+${result.alternatives ? `
+## Alternative Summaries:
+${result.alternatives.map((alt: any, idx: number) => `
+### Alternative ${idx + 1} (${alt.type})
+${alt.summary}
+`).join('\n')}` : ''}
+
+*Document summary ${result.metadata?.cached ? 'retrieved from cache' : 'generated using advanced LLM-powered summarization service'}*`,
+          },
+        ] satisfies TextContent[],
+      };
+    } catch (error) {
+      throw new Error(`Document summarization failed: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
