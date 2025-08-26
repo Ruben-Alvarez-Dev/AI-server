@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "system": "ai-server-automated-logging",
+  "initialization_time": "2025-08-25T18:46:43.331903+00:00",
+  "enforcement": {
+    "enabled": true,
+    "level": "strict",
+    "reversible": false,
+    "mandatory_operations": [
+      "file_write",
+      "file_delete",
+      "file_move",
+      "code_change",
+      "command_execution",
+      "claude_tool",
+      "system_change"
+    ],
+    "max_violations": 3,
+    "auto_block": true
+  },
+  "retention": {
+    "sessions": "365 days",
+    "operations": "180 days",
+    "metrics": "90 days",
+    "audit": "2555 days"
+  },
+  "formats": {
+    "session_logs": "jsonl",
+    "operation_logs": "json",
+    "metrics": "json",
+    "reports": "json"
+  }
+}
