@@ -1,0 +1,75 @@
+# Build outputs and intermediate files
+out/test/**
+node_modules/**
+src/**
+.vscode-test/**
+.nyc_output
+coverage
+*.map
+*.ts
+
+# Development and build files
+tsconfig.json
+webpack.config.js
+.eslintrc.js
+.eslintrc.json
+.eslintrc.yml
+.eslintrc.yaml
+.gitignore
+.prettierrc
+.prettierignore
+
+# Version control and CI
+.git/
+.github/
+**/.git/
+
+# Documentation and development
+*.md
+!readme.md
+!CHANGELOG.md
+
+# Scripts and utilities
+scripts/
+*.sh
+*.bat
+
+# Archive directory
+versions/
+
+# Logs and temporary files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Testing
+test/**
+tests/**
+**/*.test.js
+**/*.spec.js
+
+# Package manager files
+package-lock.json
+yarn.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE and editor files
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

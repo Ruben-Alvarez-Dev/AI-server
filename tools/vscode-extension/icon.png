@@ -1,0 +1,25 @@
+<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" fill="#1e90ff"/>
+  <g fill="white">
+    <!-- Database cylinders -->
+    <ellipse cx="64" cy="30" rx="25" ry="8"/>
+    <rect x="39" y="30" width="50" height="20"/>
+    <ellipse cx="64" cy="50" rx="25" ry="8"/>
+    
+    <ellipse cx="64" cy="60" rx="25" ry="8"/>
+    <rect x="39" y="60" width="50" height="20"/>
+    <ellipse cx="64" cy="80" rx="25" ry="8"/>
+    
+    <ellipse cx="64" cy="90" rx="25" ry="8"/>
+    <rect x="39" y="90" width="50" height="15"/>
+    <ellipse cx="64" cy="105" rx="25" ry="8"/>
+  </g>
+  
+  <!-- Activity dots -->
+  <g fill="#ffd700">
+    <circle cx="100" cy="115" r="3"/>
+    <circle cx="108" cy="112" r="2"/>
+    <circle cx="115" cy="118" r="2"/>
+    <circle cx="95" cy="108" r="2"/>
+  </g>
+</svg>
