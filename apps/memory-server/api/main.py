@@ -21,6 +21,8 @@ from .routers import (
 )
 from .routers.documents import router as documents_router
 from .routers.web_search import router as web_search_router
+from .routers.health_enhanced import router as health_enhanced_router
+from .routers.health_simple import router as health_simple_router
 # from .middleware import (
 #     RateLimitMiddleware,
 #     RequestLoggingMiddleware,
@@ -181,8 +183,17 @@ if config.ENABLE_CORS:
 
 # Include routers
 app.include_router(health_router, prefix="/health", tags=["Health"])
+app.include_router(health_simple_router, prefix="/api/v1", tags=["System Health"])
 app.include_router(documents_router, prefix="/api/v1", tags=["Documents"])
 app.include_router(web_search_router, tags=["Web Search"])
+
+# Include async processing router
+try:
+    from .routers.documents_async import router as async_documents_router
+    app.include_router(async_documents_router, prefix="/api/v1", tags=["Async Documents"])
+    logger.info("✅ Async documents router loaded")
+except ImportError as e:
+    logger.warning(f"⚠️  Async documents router not available: {e}")
 # app.include_router(ingest_router, prefix=f"{config.API_PREFIX}/ingest", tags=["Ingestion"])
 # app.include_router(search_router, prefix=f"{config.API_PREFIX}/search", tags=["Search"])
 # app.include_router(memory_router, prefix=f"{config.API_PREFIX}/memory", tags=["Memory"])

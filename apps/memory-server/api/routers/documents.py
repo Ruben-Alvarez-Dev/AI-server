@@ -14,7 +14,9 @@ import json
 from datetime import datetime
 
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, BackgroundTasks
+from fastapi.responses import RedirectResponse
 from fastapi.responses import JSONResponse
+from ..schemas.async_schemas import RedirectResponse as RedirectResponseSchema
 from pydantic import BaseModel, Field
 
 from core.config import get_config
@@ -154,15 +156,48 @@ async def create_workspace(workspace_name: str, description: Optional[str] = Non
         logger.error(f"Error creating workspace {workspace_name}: {e}")
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.post("/upload", response_model=DocumentUploadResponse)
-async def upload_document(
+@router.post("/upload", response_model=RedirectResponseSchema, status_code=301)
+async def upload_document_redirect():
+    """
+    Primary upload endpoint - redirects to async version
+    
+    🚀 For better performance and scalability, use /async/upload directly
+    """
+    return JSONResponse({
+        "message": "Upload endpoint has moved to async processing",
+        "redirect_to": "/api/v1/async/upload",
+        "reason": "Better performance and no blocking",
+        "documentation": "Use POST /api/v1/async/upload for uploading documents"
+    }, status_code=301)
+
+@router.post("/upload-batch", response_model=RedirectResponseSchema, status_code=301)
+async def upload_batch_redirect():
+    """
+    Primary batch upload endpoint - redirects to async version
+    
+    🚀 For better performance and scalability, use /async/upload-batch directly
+    """
+    return JSONResponse({
+        "message": "Batch upload endpoint has moved to async processing", 
+        "redirect_to": "/api/v1/async/upload-batch",
+        "reason": "Better performance and no blocking",
+        "documentation": "Use POST /api/v1/async/upload-batch for batch uploading"
+    }, status_code=301)
+
+@router.post("/upload-sync", response_model=DocumentUploadResponse, deprecated=True)
+async def upload_document_sync_legacy(
     background_tasks: BackgroundTasks,
     file: UploadFile = File(...),
     workspace: str = Form("research"),
     auto_summarize: bool = Form(True),
     tags: Optional[str] = Form(None)
 ):
-    """Upload a single document to specified workspace"""
+    """
+    LEGACY: Upload a single document to specified workspace (synchronous)
+    
+    ⚠️  DEPRECATED: Use /async/upload instead for better performance
+    This endpoint is kept for backward compatibility only.
+    """
     try:
         # Validate file
         if not file.filename:
@@ -229,15 +264,20 @@ async def upload_document(
         logger.error(f"Error uploading document {file.filename}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-@router.post("/upload-batch", response_model=BatchUploadResponse)
-async def upload_batch_documents(
+@router.post("/upload-batch-sync", response_model=BatchUploadResponse, deprecated=True)
+async def upload_batch_documents_sync_legacy(
     background_tasks: BackgroundTasks,
     files: List[UploadFile] = File(...),
     workspace: str = Form("research"),
     auto_summarize: bool = Form(True),
     tags: Optional[str] = Form(None)
 ):
-    """Upload multiple documents to specified workspace"""
+    """
+    LEGACY: Upload multiple documents to specified workspace (synchronous)
+    
+    ⚠️  DEPRECATED: Use /async/upload-batch instead for better performance
+    This endpoint is kept for backward compatibility only.
+    """
     try:
         if not files:
             raise HTTPException(status_code=400, detail="No files provided")
