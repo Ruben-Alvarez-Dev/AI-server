@@ -1,0 +1,125 @@
+# Memory Server API Tests
+# Use with VSCode REST Client extension
+# Install: ext install humao.rest-client
+
+### Variables
+@baseUrl = http://127.0.0.1:8001
+@contentType = application/json
+
+### 1. Health Check
+GET {{baseUrl}}/health/
+Accept: {{contentType}}
+
+### 2. System Info
+GET {{baseUrl}}/
+Accept: {{contentType}}
+
+### 3. API Documentation
+GET {{baseUrl}}/docs
+Accept: text/html
+
+### 4. List Workspaces
+GET {{baseUrl}}/api/v1/documents/workspaces
+Accept: {{contentType}}
+
+### 5. Document Stats
+GET {{baseUrl}}/api/v1/documents/stats
+Accept: {{contentType}}
+
+### 6. Web Search (without API key - will show error)
+POST {{baseUrl}}/api/v1/search/web
+Content-Type: {{contentType}}
+
+{
+    "query": "Python machine learning",
+    "max_results": 3
+}
+
+### 7. Search Configuration
+GET {{baseUrl}}/api/v1/search/config
+Accept: {{contentType}}
+
+### 8. Health Detailed
+GET {{baseUrl}}/health/detailed
+Accept: {{contentType}}
+
+### 9. Health Metrics  
+GET {{baseUrl}}/health/metrics
+Accept: {{contentType}}
+
+### 10. Document Activity Log
+POST {{baseUrl}}/api/v1/documents/activity
+Content-Type: {{contentType}}
+
+{
+    "action": "test",
+    "details": "API test from VSCode"
+}
+
+### 11. Content Summarization
+POST {{baseUrl}}/api/v1/documents/summarize/content
+Content-Type: {{contentType}}
+
+{
+    "content": "Artificial Intelligence is transforming the world. Machine learning algorithms are becoming more sophisticated each day. Deep learning has enabled breakthroughs in computer vision and natural language processing.",
+    "summary_type": "brief"
+}
+
+### 12. Available Summary Types
+GET {{baseUrl}}/api/v1/documents/summarize/types
+Accept: {{contentType}}
+
+### 13. Create Workspace Document
+POST {{baseUrl}}/api/v1/documents/workspace/test
+Content-Type: {{contentType}}
+
+{
+    "title": "Test Document",
+    "content": "This is a test document for the Memory Server. It contains information about artificial intelligence and machine learning.",
+    "metadata": {
+        "source": "vscode-test",
+        "category": "testing",
+        "tags": ["ai", "ml", "test"]
+    }
+}
+
+### 14. Search in Documents  
+GET {{baseUrl}}/api/v1/documents/search?query=artificial%20intelligence&workspace=test
+Accept: {{contentType}}
+
+### 15. Documentation Search
+POST {{baseUrl}}/api/v1/search/documentation
+Content-Type: {{contentType}}
+
+{
+    "query": "how to use memory server API",
+    "domain": "localhost"
+}
+
+### 16. Code Search
+POST {{baseUrl}}/api/v1/search/code
+Content-Type: {{contentType}}
+
+{
+    "query": "async def initialize",
+    "language": "python",
+    "file_types": [".py"]
+}
+
+### 17. Health Status Check
+GET {{baseUrl}}/health/status
+Accept: {{contentType}}
+
+### 18. Health Ready Check
+GET {{baseUrl}}/health/ready
+Accept: {{contentType}}
+
+### 19. Health Live Check
+GET {{baseUrl}}/health/live
+Accept: {{contentType}}
+
+### 20. OpenAPI Schema
+GET {{baseUrl}}/openapi.json
+Accept: {{contentType}}
+
+###

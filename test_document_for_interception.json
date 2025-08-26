@@ -1,0 +1,16 @@
+{
+  "title": "Documento de Prueba para Intercepción - Claude Code",
+  "content": "Este es un documento especial creado para probar la intercepción de Claude Code con el Memory Server. El documento contiene información sobre inteligencia artificial, sistemas de memoria distribuida, y procesamiento de lenguaje natural. Claude Code debería poder detectar este documento cuando se inserte en el sistema. El identificador único de esta prueba es: TEST_INTERCEPTION_2025_08_26_CLAUDE_CODE_MEMORY_SERVER_ACTIVE. Este texto incluye conceptos técnicos como: embeddings vectoriales, chunking semántico, LazyGraphRAG, recuperación híbrida, y sistemas de memoria episódica. La fecha de esta prueba es 26 de agosto de 2025 y el sistema Memory Server está operativo en el puerto 8001.",
+  "metadata": {
+    "source": "claude-code-test",
+    "category": "interception-test",
+    "tags": ["claude-code", "memory-server", "interception", "ai", "test"],
+    "test_id": "TEST_INTERCEPTION_2025_08_26",
+    "created_by": "Claude Code Assistant",
+    "purpose": "Verificar intercepción y detección de documentos",
+    "timestamp": "2025-08-26T17:30:00Z",
+    "workspace": "test",
+    "priority": "high",
+    "keywords": ["intercepción", "claude-code", "memory-server", "prueba", "ai", "vectores", "embeddings"]
+  }
+}
