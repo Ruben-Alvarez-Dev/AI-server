@@ -1,146 +1,215 @@
 # AI-Server Documentation
 
-**Next-Generation AI Development Ecosystem with Advanced RAG & Multi-Modal Intelligence**
+**Enterprise-Grade Multi-Service AI Platform Documentation**
+
+*Complete technical documentation organized for different audiences and use cases.*
 
 ---
 
 ## 📚 Documentation Structure
 
+This documentation follows an **enterprise flat structure** used by major tech companies like Google, Microsoft, and Meta. Each section is organized by audience and reading flow.
+
+### 📖 Reading Path
+
 ```
-docs/
-├── architecture/         # System design and architecture
-│   ├── overview.md       # High-level system overview
-│   ├── memory-server.md  # Memory-Server (advanced RAG)
-│   ├── llm-server.md     # LLM-Server architecture
-│   └── integration.md    # Service integration patterns
-├── deployment/           # Deployment and operations
-│   ├── installation.md   # Installation guide
-│   ├── docker.md         # Docker deployment
-│   ├── production.md     # Production setup
-│   └── monitoring.md     # Monitoring and logging
-├── user-guides/          # User documentation
-│   ├── getting-started.md # Quick start guide
-│   ├── workspaces.md     # Workspace management
-│   ├── tools-guide.md    # Tools and extensions
-│   └── troubleshooting.md # Common issues and solutions
-└── api-reference/        # API documentation
-    ├── memory-server-api.md # Memory-Server REST API
-    ├── llm-server-api.md   # LLM-Server API
-    └── webhooks.md         # Webhook specifications
+01_design → 02_installation → 03_user_manual → 04_tooling
+   ↓            ↓                ↓               ↓
+Understand   Implement        Operate        Extend
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🎯 Quick Navigation
 
-1. **Start Memory-Server:**
-   ```bash
-   cd memory-server
-   python api/main.py
-   ```
+### 🏗️ 01. Design Documentation
+**Audience**: Architects, decision makers, new team members  
+**Purpose**: Understand what AI-Server is and how it's designed
 
-2. **Start LLM-Server:**
-   ```bash
-   cd llm-server
-   python server/main.py
-   ```
+- [📋 Architecture Decisions](01_design/01_overview-architecture-decisions.md)
+- [🏢 Project Structure](01_design/02_project-structure-guide.md)  
+- [⚙️ System Architecture](01_design/03_system-architecture.md)
+- [🧠 Memory System Design](01_design/04_memory-server-design.md)
+- [🔬 Research Background](01_design/05_memory-server-research.md)
 
-3. **Test the system:**
-   ```bash
-   curl http://localhost:8001/health/status
-   ```
+### ⚡ 02. Installation Documentation  
+**Audience**: Users, developers  
+**Purpose**: Get AI-Server running locally on your machine
+
+- [🚀 Quick Start Guide](02_installation/01_quick-start.md) ← **Start here**
+- [💻 Local Development](02_installation/02_local-development.md)
+- [📊 System Requirements](02_installation/03_system-requirements.md)
+- [🚨 Troubleshooting](02_installation/04_troubleshooting.md)
+
+### 📖 03. User Manual
+**Audience**: End users, operators  
+**Purpose**: Learn to use AI-Server effectively
+
+- [🎯 First Steps](03_user_manual/01_first-steps.md)
+- [💬 Chat Completions](03_user_manual/03_chat-completions.md)
+- [🧠 Memory Management](03_user_manual/06_memory-management.md)
+- [🔧 IDE Integration](03_user_manual/09_cline-integration.md)
+- [🚨 Troubleshooting](03_user_manual/15_common-issues.md)
+
+### 🛠️ 04. Tooling Documentation
+**Audience**: Developers, integrators  
+**Purpose**: Build applications and integrations with AI-Server
+
+- [📋 **Tools Master Index**](04_tooling/00_tools-index.md) ⭐ **← START HERE**
+- [🔌 LLM Server API](04_tooling/01_llm-server-api.md)
+- [🧠 Memory Server API](04_tooling/02_memory-server-api.md)
+- [🐍 Python SDK](04_tooling/05_python-sdk.md)
+- [🌐 JavaScript SDK](04_tooling/06_javascript-sdk.md)
+- [🔧 CLI Tools](04_tooling/09_cli-tools.md)
+
+**🏗️ Internal Tools (Complete Ecosystem):**
+- [🔒 ATLAS - Automated Logging System](04_tooling/automated-logging-system.md)
+- [💻 VSCode Activity Tracker](04_tooling/vscode-activity-tracker.md)
+- [🌐 Web Scraper Tool](04_tooling/web-scraper.md)
+- [🤖 CLI Interfaces (AI Assistants)](04_tooling/cli-interfaces.md)
+- [🔌 MCP Servers](04_tooling/mcp-servers.md)
+- [🎯 Model Watcher Service](04_tooling/model-watcher.md)
 
 ---
 
-## 🏗️ System Architecture
+## 🚀 Getting Started
 
+### New to AI-Server?
+1. **Understand**: Read [Design Documentation](01_design/) to grasp the architecture
+2. **Install**: Follow [Quick Start Guide](02_installation/01_quick-start.md) to get running
+3. **Use**: Learn basic operations in [User Manual](03_user_manual/)
+4. **Extend**: Build integrations with [Tooling Documentation](04_tooling/)
+
+### Quick Installation
+```bash
+# Clone and setup
+git clone <repository-url> AI-server
+cd AI-server
+./bin/setup.sh
+
+# Start services  
+./bin/start_ai_server.py
+
+# Test installation
+curl http://localhost:8000/health
 ```
-AI-Server/
-├── memory-server/       # Advanced RAG with LazyGraphRAG & Late Chunking
-├── llm-server/          # LLM inference and model management
-├── gui-server/          # Future: Web UI for monitoring & config
-├── tools/               # External tools and integrations
-│   ├── extensions/      # IDE extensions (VSCode activity tracker)
-│   ├── web-scraper/     # Advanced web content extraction
-│   ├── interpreters/    # Code interpreters (Open Interpreter)
-│   └── scripts/         # Utility scripts
-├── docs/                # Comprehensive documentation
-├── tests/               # Integration and E2E tests
-└── configs/             # Shared configurations
+
+---
+
+## 🏗️ System Overview
+
+AI-Server is an enterprise-grade multi-service AI platform featuring:
+
+### Core Applications
+- **LLM Server** (`apps/llm-server/`) - OpenAI-compatible chat completions
+- **Memory Server** (`apps/memory-server/`) - LazyGraphRAG intelligent memory
+
+### Support Services  
+- **Model Watcher** (`services/model-watcher/`) - Automatic model management
+- **Vector Database** (planned) - Scalable vector storage
+
+### Development Tools
+- **CLI Interfaces** (`tools/cli-interfaces/`) - Command-line AI assistants
+- **VS Code Extension** (`tools/vscode-extension/`) - IDE integration
+- **Web Scraper** (`tools/web-scraper/`) - Documentation ingestion
+- **ATLAS** (`logs/`) - Automated logging & audit system 🔒
+
+---
+
+## 📊 Architecture Principles
+
+### Local Multi-App Pattern
 ```
+apps/         # User-facing applications (LLM + Memory servers)
+services/     # Background support services (Model Watcher)  
+tools/        # Development utilities (CLI tools, extensions)
+bin/          # Executable scripts (startup/shutdown)
+src/          # Shared libraries
+assets/       # Resources (AI models, prompts, datasets)
+```
+
+### Design Philosophy
+- **Local-first**: Runs entirely on your machine
+- **Simple deployment**: Python scripts, no containers required
+- **Modular architecture**: Independent services that work together
+
+### Team Scalability
+- Clear ownership boundaries
+- Independent development cycles  
+- Modular architecture for team growth
 
 ---
 
 ## 🎯 Key Features
 
-### Memory-Server (Advanced RAG)
-- **🚀 LazyGraphRAG**: 1000x cost reduction vs traditional GraphRAG
-- **🎨 Late Chunking**: Context-preserving embeddings (8192 tokens)
-- **⚡ Hybrid Retrieval**: Vector + Graph fusion for optimal results
-- **🤖 Agentic RAG**: Multi-turn reasoning with Think-Retrieve-Rethink-Generate
-- **👁️ Multimodal**: Text, images, documents, code analysis
-- **🏷️ Auto-Tagging**: Intelligent content categorization
+### 🧠 Intelligent Memory (LazyGraphRAG)
+- 1000x cost reduction vs traditional GraphRAG
+- Context-preserving late chunking
+- Multi-modal document processing
 
-### Tool Integration
-- **VSCode Extension**: Real-time development activity tracking
-- **Web Scraper**: Serper/Firecrawl API integration for enhanced content
-- **Open Interpreter**: Memory-aware code execution
-- **Workspace Management**: Organized content silos (code, research, projects, personal)
+### 🔥 Performance Optimized
+- **55+ tokens/sec** on M1 Ultra
+- **<100ms** first token latency
+- **128K native context** with unlimited extension
 
-### Performance
-- **Latency**: 50-100ms queries (3-4x faster than R2R)
-- **Accuracy**: 90-95% precision (+15% vs R2R)
-- **Context**: 2M+ effective context (16x more than R2R)
-- **Languages**: 89 languages supported
+### 🔌 Universal Compatibility  
+- 100% OpenAI API compatibility
+- IDE integrations (Cline, Cursor, Continue)
+- Multi-language SDKs (Python, JavaScript)
 
 ---
 
-## 📖 Navigation Guide
+## 📈 Development Status
 
-### 🏗️ For Developers
-- **[Architecture Overview](architecture/overview.md)** - System design principles
-- **[Memory-Server Deep Dive](architecture/memory-server.md)** - RAG implementation details
-- **[API Reference](api-reference/)** - Complete API documentation
-- **[Integration Patterns](architecture/integration.md)** - Service communication
-
-### 🚀 For DevOps
-- **[Installation Guide](deployment/installation.md)** - Production setup
-- **[Docker Deployment](deployment/docker.md)** - Containerization
-- **[Monitoring](deployment/monitoring.md)** - Observability setup
-- **[Production Config](deployment/production.md)** - Scaling considerations
-
-### 👥 For Users
-- **[Getting Started](user-guides/getting-started.md)** - First steps
-- **[Workspace Guide](user-guides/workspaces.md)** - Content organization
-- **[Tools Setup](user-guides/tools-guide.md)** - VSCode extension & web scraper
-- **[Troubleshooting](user-guides/troubleshooting.md)** - Common solutions
+| Component | Status | Description |
+|-----------|--------|-------------|
+| LLM Server | ✅ Working | Local chat completions API |
+| Memory Server | ✅ Working | Document search with LazyGraphRAG |
+| Model Watcher | ✅ Working | Automatic model detection |
+| CLI Tools | ✅ Working | Open Interpreter, OpenCode integration |
+| VS Code Extension | ✅ Working | Development activity tracking |
+| Web Scraper | ✅ Working | Documentation ingestion |
+| **ATLAS Logging** | ✅ **Working** | **Automated audit trail & compliance** |
+| System Health Monitor | 🔄 Planned | Component integrity monitoring |
+| Web Dashboard | 🔄 Future | Management web interface |
+| Docker Support | 🔄 Future | Containerized deployment |
+| Cloud Deployment | 🔄 Future | AWS/GCP deployment options |
 
 ---
 
-## 🔧 Development Status
+## 🤝 Contributing
 
-### ✅ Completed
-- Memory-Server core architecture
-- Document ingestion system
-- Workspace management
-- Auto-tagging intelligence
-- Web search integration (Serper/Firecrawl)
-- VSCode extension
-- Multimodal support
+We welcome contributions! Please start with:
 
-### 🚧 In Progress
-- Auto-summarization system
-- Open Interpreter customization
-- Comprehensive testing suite
-
-### 📋 Planned
-- GUI Server for monitoring
-- Advanced analytics dashboard
-- Mobile companion app
-- Enterprise features
+1. [Design Documentation](01_design/) - Understand the architecture
+2. [Local Development Setup](02_installation/02_local-development.md) - Get environment ready
+3. [Contributing Guidelines](04_tooling/contributing.md) - Follow our standards
 
 ---
 
-**Last Updated**: December 2024  
-**Version**: 1.0.0  
+## 📞 Support
+
+- **Quick Issues**: Check [Troubleshooting](03_user_manual/15_common-issues.md)
+- **Installation Problems**: See [Installation Troubleshooting](02_installation/08_troubleshooting.md)  
+- **API Questions**: Reference [Tooling Documentation](04_tooling/)
+- **Bug Reports**: Create an issue in the repository
+- **Feature Requests**: Use GitHub Discussions
+
+---
+
+## 📄 Document Standards
+
+This documentation follows:
+- **Enterprise flat structure** (no deep nesting)
+- **Numbered sections** for logical reading order
+- **Audience-specific organization** (design → install → use → develop)
+- **Descriptive filenames** that indicate exact content
+- **Cross-references** for easy navigation
+
+---
+
+**Version**: 3.0  
+**Last Updated**: 2024-08-25  
 **Maintained by**: AI-Server Team
+
+**Start here**: [Quick Start Guide](02_installation/01_quick-start.md)

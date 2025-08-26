@@ -6,24 +6,35 @@ This directory contains external tools, integrations, and utilities for the AI-S
 
 ```
 tools/
-├── extensions/           # IDE and editor extensions
-│   └── vscode-activity-tracker/    # VSCode extension for Memory-Server integration
+├── mcp-servers/          # Model Context Protocol servers
+│   └── memory-server-mcp/ # MCP server for Memory-Server integration
+├── vscode-activity-tracker/ # VSCode extension for activity tracking
 ├── web-scraper/          # Web scraping utilities and configurations
-├── interpreters/         # Code interpreter integrations
-│   └── open-interpreter/  # Customized Open Interpreter with Memory-Server
-├── scripts/             # Utility scripts and automation tools
-│   ├── deployment/      # Deployment automation
-│   ├── monitoring/      # System monitoring scripts
-│   └── maintenance/     # Maintenance and cleanup scripts
-└── configs/             # Shared tool configurations
+├── open-interpreter/     # Customized Open Interpreter with AI-Server integration
+├── opencode/            # OpenCode CLI with Memory-Server and Model Pool
+├── model-watcher/       # Auto-organizer for model pool management
+└── README.md            # This documentation
 ```
 
 ## Available Tools
 
+### 🔌 MCP Servers
+
+#### Memory-Server MCP
+- **Path**: `mcp-servers/memory-server-mcp/`
+- **Purpose**: Model Context Protocol server for Claude/LLM integration
+- **Integration**: Direct Memory-Server API access
+- **Features**:
+  - Native Claude Code integration
+  - Real-time document search and upload
+  - Advanced summarization tools
+  - Workspace management
+  - Activity tracking
+
 ### 🔌 Extensions
 
 #### VSCode Activity Tracker
-- **Path**: `extensions/vscode-activity-tracker/`
+- **Path**: `vscode-activity-tracker/`
 - **Purpose**: Real-time development activity tracking
 - **Integration**: Memory-Server workspace management
 - **Features**: 
@@ -42,17 +53,38 @@ tools/
   - Batch processing capabilities
   - Intelligent content cleaning
 
-### 🤖 Interpreters
+### 🤖 Code Interpreters
 
-#### Open Interpreter Integration
-- **Path**: `interpreters/open-interpreter/`
+#### Open Interpreter
+- **Path**: `open-interpreter/`
 - **Purpose**: Enhanced code execution with Memory-Server context
 - **Integration**: LLM-Server and Memory-Server
 - **Features**:
   - Memory-aware code execution
   - Context-enhanced completions
   - Workspace integration
-  - Advanced debugging capabilities
+  - Auto-save important work
+  - Technical summarization
+
+#### OpenCode CLI
+- **Path**: `opencode/`
+- **Purpose**: AI-powered code CLI assistant
+- **Integration**: Model Pool and Memory-Server
+- **Features**:
+  - Automatic model selection from pool
+  - Code search in Memory-Server
+  - Snippet management
+  - Session tracking
+  - Technical documentation generation
+
+### 🔧 Model Watcher
+- **Path**: `model-watcher/`
+- **Purpose**: Automatic model organization and management
+- **Features**:
+  - Auto-copies models to organized pool
+  - Maintains README with usage tracking
+  - Categories: llm/code, llm/chat, embedding, etc.
+  - Physical copies for service isolation
 
 ## Usage Guidelines
 
