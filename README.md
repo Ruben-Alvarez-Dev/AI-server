@@ -11,8 +11,8 @@
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/badge/Status-🟢%20Production%20Ready-green?style=flat-square" />
-<img src="https://img.shields.io/badge/Architecture-🏗️%20Enterprise%20Grade-blue?style=flat-square" />
+<img src="https://img.shields.io/badge/Status-🟡%20Early%20Development-yellow?style=flat-square" />
+<img src="https://img.shields.io/badge/Architecture-🏗️%20In%20Progress-orange?style=flat-square" />
 <img src="https://img.shields.io/badge/Development-🤖%20AI%20Native-purple?style=flat-square" />
 </p>
 
@@ -314,14 +314,24 @@ AI-server/
 
 > 📚 **Read the full rationale**: [Architecture Decision Record](./docs/architecture/ADR-001-Directory-Structure.md)
 
-## 🎯 Virtual AI Models
+## 🎯 AI Model Collection
 
-| Model | Purpose | Optimized For |
-|-------|---------|---------------|
+**Current Model Inventory:**
+- **🧠 LLM Models**: 16+ models including Qwen2.5 series (1.5B to 32B parameters)
+- **💻 Coding Models**: DeepSeek-Coder, Qwen2.5-Coder specialized for development
+- **🎯 Embedding Models**: Nomic-Embed for semantic understanding
+- **🔄 Vision Models**: Multi-modal processing capabilities
+
+**Virtual Model Endpoints:**
+
+| Endpoint | Purpose | Optimized For |
+|----------|---------|---------------|
 | `cline-optimized` | Cline IDE integration | PLAN/ACT modes, multimodal |
 | `openai-compatible` | OpenAI API standard | 100% API compatibility |
 | `multimodal-enhanced` | Complex analysis | Text + Images + Documents |
 | `thinking-enabled` | Deep reasoning | Always-on reasoning mode |
+| `code-specialist` | Development tasks | Programming, debugging, review |
+| `memory-enhanced` | Context-rich tasks | RAG integration, long conversations |
 
 ## 📡 Service Endpoints
 
@@ -476,22 +486,24 @@ cd AI-server
 | Service won't start | Run `./bin/setup.sh` first |
 | Import errors | Check Python path and dependencies |
 
-## 📈 Performance Metrics
+## 📈 Performance Targets (Planned)
 
-### 🏃‍♂️ Throughput (M1 Ultra)
-- **Text Generation**: 55+ tokens/second
-- **Code Completion**: 45+ tokens/second  
-- **Multimodal**: 30+ tokens/second
+> **⚠️ Note**: These are projected performance targets for the completed system
 
-### ⚡ Latency
-- **First Token**: <100ms
-- **API Response**: <50ms
-- **Memory Search**: <200ms
+### 🏃‍♂️ Throughput Targets (M1 Ultra)
+- **Text Generation**: 55+ tokens/second (target)
+- **Code Completion**: 45+ tokens/second (target)
+- **Multimodal**: 30+ tokens/second (target)
 
-### 🧠 Context Handling
-- **Native Context**: 128K tokens
-- **Extended Context**: Unlimited (via LazyGraphRAG)
-- **Memory Retention**: Persistent across sessions
+### ⚡ Latency Goals
+- **First Token**: <100ms (goal)
+- **API Response**: <50ms (goal)
+- **Memory Search**: <200ms (goal)
+
+### 🧠 Context Handling (Planned)
+- **Native Context**: 128K tokens (when implemented)
+- **Extended Context**: Unlimited via LazyGraphRAG (in development)
+- **Memory Retention**: Persistent across sessions (planned)
 
 ## 🔐 Security
 
@@ -591,11 +603,21 @@ MIT License - See [LICENSE](./LICENSE)
 
 ## 🏷️ Project Status
 
-**Version**: 3.0  
-**Status**: 🟢 Production Ready  
-**Architecture**: ✅ Enterprise Grade  
-**Team Ready**: ✅ Multi-team scalable  
-**Performance**: ⚡ M1 Ultra optimized  
+**Version**: 3.0 (Alpha)  
+**Status**: 🟡 Early Development - Not Production Ready  
+**Architecture**: 🏗️ In Active Development  
+**Testing**: 🔄 Basic Integration Tests  
+**Performance**: ⚡ M1 Ultra optimized (when complete)  
+
+> **⚠️ Development Notice**: This project is in active development phase. Core components are being implemented and tested. Not suitable for production use yet.
+
+**Current State:**
+- ✅ Architecture design complete
+- ✅ Basic infrastructure setup
+- 🔄 Core services implementation in progress
+- 🔄 Integration testing ongoing
+- ❌ Not ready for production deployment
+- ❌ Performance metrics are projections
 
 **Maintained by**: Rubén Alvarez  
 **Last Updated**: 2025-08-26
