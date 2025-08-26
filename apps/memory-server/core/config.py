@@ -49,18 +49,19 @@ class MemoryServerConfig:
     EMBEDDING_HUB_PORT: int = 8900
     EMBEDDING_HUB_TIMEOUT: int = 30
     
-    # Legacy model configs (for fallback if hub unavailable) - REMOVED JINA
-    EMBEDDING_MODEL: str = "local-tfidf"  # Use local embeddings only
+    # Legacy model configs (for fallback if hub unavailable) - Use working model
+    EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"  # Use working sentence transformer model
     COLBERT_MODEL: str = "disabled"
     CODE_MODEL: str = "microsoft/codebert-base"
     RERANKER_MODEL: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
     MULTIMODAL_MODEL: str = "openai/clip-vit-large-patch14"
     
-    # === Memory Configuration ===
-    WORKING_MEMORY_SIZE: int = 128 * 1024  # 128K tokens
-    EPISODIC_MEMORY_SIZE: int = 2 * 1024 * 1024  # 2M tokens
+    # === Memory Configuration === 
+    # Optimized for M1 Ultra with 128GB RAM
+    WORKING_MEMORY_SIZE: int = 256 * 1024  # 256K tokens (increased for M1 Ultra)
+    EPISODIC_MEMORY_SIZE: int = 8 * 1024 * 1024  # 8M tokens (4x increase) 
     SEMANTIC_MEMORY_UNLIMITED: bool = True
-    PROCEDURAL_MEMORY_SIZE: int = 10000  # 10K patterns
+    PROCEDURAL_MEMORY_SIZE: int = 50000  # 50K patterns (5x increase)
     
     # === Vector Store Configuration ===
     VECTOR_DIMENSION: int = 768
@@ -90,12 +91,13 @@ class MemoryServerConfig:
     REASONING_TIMEOUT: int = 60  # seconds
     
     # === Performance Configuration ===
-    MAX_CONCURRENT_REQUESTS: int = 100
-    QUERY_TIMEOUT: int = 30  # seconds
-    BATCH_SIZE: int = 32
-    NUM_WORKERS: int = 4
+    # Optimized for M1 Ultra 128GB RAM - High Performance Settings
+    MAX_CONCURRENT_REQUESTS: int = 500  # 5x increase for M1 Ultra
+    QUERY_TIMEOUT: int = 60  # Extended for complex queries
+    BATCH_SIZE: int = 128  # 4x increase for better throughput  
+    NUM_WORKERS: int = 12  # Leverage M1 Ultra's 20 CPU cores
     ENABLE_CACHING: bool = True
-    CACHE_TTL: int = 3600  # 1 hour
+    CACHE_TTL: int = 7200  # 2 hours (longer caching with ample RAM)
     
     # === API Configuration ===
     API_HOST: str = "localhost"
@@ -104,7 +106,7 @@ class MemoryServerConfig:
     GRPC_PORT: int = 8003
     API_PREFIX: str = "/api/v1"
     ENABLE_CORS: bool = True
-    MAX_FILE_SIZE: int = 50 * 1024 * 1024  # 50MB max file size
+    MAX_FILE_SIZE: int = 500 * 1024 * 1024  # 500MB max file size (10x increase for M1 Ultra)
     
     # === Logging Configuration ===
     LOG_LEVEL: LogLevel = LogLevel.INFO

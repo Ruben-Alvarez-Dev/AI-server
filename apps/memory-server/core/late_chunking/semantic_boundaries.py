@@ -26,6 +26,11 @@ class SemanticBoundaryDetector(BoundaryDetector):
     def __init__(self, similarity_threshold: float = 0.7):
         self.config = get_config()
         self.similarity_threshold = similarity_threshold
+    
+    async def initialize(self):
+        """Initialize the boundary detector"""
+        logger.info("SemanticBoundaryDetector initialized")
+        return True
         
     async def detect_boundaries(self, text: str, embeddings: np.ndarray, chunk_size: int) -> List[int]:
         """Detect boundaries based on semantic similarity drops"""
