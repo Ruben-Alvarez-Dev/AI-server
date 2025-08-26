@@ -1,0 +1,6 @@
+# AI-Server Web Scraper Dependencies
+playwright>=1.40.0
+html2text>=2020.1.16
+aiofiles>=23.0.0
+beautifulsoup4>=4.12.0
+requests>=2.31.0

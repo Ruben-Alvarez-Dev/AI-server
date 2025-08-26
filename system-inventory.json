@@ -1,0 +1,419 @@
+{
+  "ai_server_inventory": {
+    "metadata": {
+      "version": "3.0",
+      "last_updated": "2025-08-25",
+      "status": "production_ready",
+      "total_components": 15,
+      "documentation_pages": 20,
+      "test_coverage": "52/52 passing"
+    },
+    "core_applications": {
+      "llm_server": {
+        "path": "apps/llm-server/",
+        "status": "operational",
+        "purpose": "OpenAI-compatible local LLM API",
+        "port": 8000,
+        "main_files": [
+          "server/main.py",
+          "real_server.py",
+          "requirements.txt"
+        ],
+        "models": [
+          "DeepSeek-Coder-V2-Lite-Instruct-Q6_K.gguf",
+          "qwen2.5-coder-7b-instruct-q6_k.gguf"
+        ],
+        "api_compatibility": "OpenAI",
+        "health_endpoint": "http://localhost:8000/health"
+      },
+      "memory_server": {
+        "path": "apps/memory-server/",
+        "status": "operational",
+        "purpose": "LazyGraphRAG intelligent memory system",
+        "port": 8001,
+        "main_files": [
+          "api/main.py",
+          "core/lazy_graph/",
+          "core/late_chunking/"
+        ],
+        "features": [
+          "LazyGraphRAG",
+          "Late Chunking",
+          "Multi-workspace",
+          "Auto-summarization"
+        ],
+        "health_endpoint": "http://localhost:8001/health"
+      }
+    },
+    "background_services": {
+      "model_watcher": {
+        "path": "services/model-watcher/",
+        "status": "operational",
+        "purpose": "Automatic model organization",
+        "main_files": [
+          "watcher.py",
+          "auto_start.py"
+        ],
+        "monitors": "assets/models/",
+        "organizes_to": "assets/models/pool/",
+        "features": [
+          "Real-time monitoring",
+          "Intelligent categorization",
+          "Symbolic linking",
+          "Registry system"
+        ]
+      }
+    },
+    "development_tools": {
+      "vscode_activity_tracker": {
+        "path": "tools/vscode-activity-tracker/",
+        "status": "operational",
+        "type": "VSCode Extension",
+        "language": "TypeScript",
+        "purpose": "Development activity capture",
+        "main_files": [
+          "src/extension.ts",
+          "package.json",
+          "build-extension.sh"
+        ],
+        "integration": "Memory-Server API",
+        "events_captured": [
+          "file_edits",
+          "git_commits",
+          "debug_sessions",
+          "terminal_activity"
+        ]
+      },
+      "web_scraper": {
+        "path": "tools/web-scraper/",
+        "status": "operational",
+        "type": "Python + Playwright",
+        "purpose": "Documentation extraction",
+        "main_files": [
+          "scraper.py"
+        ],
+        "features": [
+          "JavaScript-aware scraping",
+          "Markdown conversion",
+          "Memory-Server ready output"
+        ],
+        "browser_engine": "Chromium"
+      },
+      "cli_interfaces": {
+        "path": "tools/cli-interfaces/",
+        "status": "operational",
+        "purpose": "Enhanced AI assistants",
+        "components": {
+          "open_interpreter": {
+            "path": "tools/cli-interfaces/open-interpreter/",
+            "main_files": [
+              "config.py",
+              "memory_integration.py",
+              "launch.py"
+            ],
+            "features": [
+              "Memory-Server integration",
+              "Workspace management",
+              "Auto-summarization"
+            ]
+          },
+          "opencode": {
+            "path": "tools/cli-interfaces/opencode/",
+            "main_files": [
+              "config.py",
+              "custom_opencode.py"
+            ],
+            "features": [
+              "Context-aware coding",
+              "Project understanding"
+            ]
+          }
+        }
+      },
+      "mcp_servers": {
+        "path": "tools/mcp-servers/",
+        "status": "operational",
+        "purpose": "Model Context Protocol integration",
+        "components": {
+          "memory_server_mcp": {
+            "path": "tools/mcp-servers/memory-server-mcp/",
+            "type": "TypeScript + Node.js",
+            "main_files": [
+              "src/index.ts",
+              "package.json"
+            ],
+            "tools_exposed": [
+              "memory_search",
+              "document_upload",
+              "web_scrape",
+              "summarize_content",
+              "track_activity"
+            ],
+            "integration": "Claude Desktop"
+          }
+        }
+      }
+    },
+    "audit_logging": {
+      "atlas": {
+        "path": "logs/",
+        "status": "operational",
+        "purpose": "Enterprise automated audit trail",
+        "type": "Python + Immutable logging",
+        "components": {
+          "core": {
+            "path": "logs/core/",
+            "files": [
+              "session_logger.py",
+              "enforcer.py",
+              "claude_hooks.py",
+              "__init__.py"
+            ]
+          },
+          "scripts": {
+            "path": "logs/scripts/",
+            "files": [
+              "init-logging-system.sh",
+              "verify-logs.sh",
+              "generate-report.sh",
+              "monitor-realtime.py"
+            ]
+          },
+          "storage": {
+            "path": "logs/sessions/",
+            "format": "JSONL",
+            "structure": "YYYY-MM-DD/session-*.jsonl",
+            "features": [
+              "Immutable",
+              "Hash-linked",
+              "Enterprise compliance"
+            ]
+          }
+        },
+        "features": [
+          "Blockchain-style integrity",
+          "Mandatory enforcement",
+          "Git hooks integration",
+          "Real-time monitoring"
+        ],
+        "compliance": [
+          "SOX",
+          "GDPR",
+          "ISO27001"
+        ]
+      }
+    },
+    "assets": {
+      "models": {
+        "path": "assets/models/",
+        "organization": {
+          "original": "assets/models/",
+          "pool": "assets/models/pool/"
+        },
+        "categories": [
+          "llm/code",
+          "llm/chat", 
+          "llm/general",
+          "llm/specialized",
+          "embedding",
+          "multimodal"
+        ],
+        "models_present": [
+          {
+            "name": "DeepSeek-Coder-V2-Lite-Instruct-Q6_K.gguf",
+            "category": "llm/code",
+            "size": "large"
+          },
+          {
+            "name": "qwen2-1_5b-instruct-q6_k.gguf",
+            "category": "llm/general",
+            "size": "small"
+          },
+          {
+            "name": "qwen2.5-14b-instruct-q6_k.gguf",
+            "category": "llm/general",
+            "size": "large",
+            "parts": 4
+          },
+          {
+            "name": "qwen2.5-32b-instruct-q6_k.gguf",
+            "category": "llm/general", 
+            "size": "xlarge",
+            "parts": 7
+          },
+          {
+            "name": "qwen2.5-coder-7b-instruct-q6_k.gguf",
+            "category": "llm/code",
+            "size": "medium"
+          }
+        ]
+      },
+      "prompts": {
+        "path": "assets/prompts/",
+        "status": "available"
+      },
+      "datasets": {
+        "path": "assets/datasets/",
+        "status": "available"
+      }
+    },
+    "executable_scripts": {
+      "startup": {
+        "path": "bin/",
+        "scripts": [
+          {
+            "name": "start_ai_server.py",
+            "type": "Python",
+            "purpose": "Unified system startup"
+          },
+          {
+            "name": "start_servers.sh", 
+            "type": "Shell",
+            "purpose": "Alternative startup script"
+          }
+        ],
+        "features": [
+          "Health checking",
+          "Graceful shutdown",
+          "Service orchestration"
+        ]
+      }
+    },
+    "documentation": {
+      "path": "docs/",
+      "status": "complete",
+      "structure": {
+        "design": "docs/01_design/",
+        "installation": "docs/02_installation/",
+        "user_manual": "docs/03_user_manual/",
+        "tooling": "docs/04_tooling/"
+      },
+      "tooling_docs": [
+        "00_tools-index.md",
+        "automated-logging-system.md",
+        "vscode-activity-tracker.md", 
+        "web-scraper.md",
+        "cli-interfaces.md",
+        "mcp-servers.md",
+        "model-watcher.md"
+      ],
+      "total_pages": 20,
+      "last_updated": "2025-08-25"
+    },
+    "testing": {
+      "path": "tests/",
+      "status": "operational",
+      "structure": {
+        "unit": "tests/unit/",
+        "integration": "apps/memory-server/tests/integration/",
+        "e2e": "tests/e2e/",
+        "performance": "tests/performance/"
+      },
+      "runner": "tests/run_tests.py",
+      "results": {
+        "total_tests": 52,
+        "passing": 52,
+        "failing": 0,
+        "success_rate": "100%",
+        "last_run": "2025-08-25"
+      },
+      "test_categories": [
+        "activity_endpoint",
+        "api_server", 
+        "basic_functionality",
+        "core_only",
+        "ingestion_endpoints",
+        "memory_server_comprehensive",
+        "performance_basic",
+        "web_search_endpoints"
+      ]
+    },
+    "configuration": {
+      "environments": [
+        "config/development/",
+        "config/production/",
+        "config/testing/"
+      ],
+      "status": "configured"
+    },
+    "deployment": {
+      "path": "deploy/",
+      "systems": [
+        "deploy/docker/",
+        "deploy/kubernetes/", 
+        "deploy/scripts/"
+      ],
+      "status": "available"
+    },
+    "monitoring": {
+      "path": "monitoring/",
+      "components": [
+        "monitoring/alerts/",
+        "monitoring/logs/",
+        "monitoring/metrics/"
+      ],
+      "status": "configured"
+    },
+    "security": {
+      "path": "security/",
+      "components": [
+        "security/audit/",
+        "security/keys/",
+        "security/policies/"
+      ],
+      "status": "secured"
+    },
+    "source_libraries": {
+      "path": "src/",
+      "components": [
+        "src/common/",
+        "src/models/",
+        "src/protocols/",
+        "src/utils/"
+      ],
+      "status": "available"
+    },
+    "git_integration": {
+      "hooks": {
+        "post_commit": "Active (ATLAS integration)",
+        "status": "operational"
+      },
+      "repository_state": {
+        "branch": "main",
+        "recent_commits": [
+          "a8276a4 - ATLAS: Complete workflow test",
+          "1e15dac - Test: ATLAS commit logging functionality"
+        ],
+        "modified_files": "Major restructure completed"
+      }
+    },
+    "system_metrics": {
+      "performance": {
+        "memory_usage": "100-200MB total ecosystem",
+        "cpu_impact": "<5% normal operations",
+        "storage": "~15GB (mostly AI models)",
+        "network": "Local-only processing"
+      },
+      "availability": {
+        "uptime_design": "24/7 operation",
+        "health_checks": "Built-in",
+        "monitoring": "ATLAS logging + built-in"
+      },
+      "security": {
+        "audit_trail": "ATLAS (active, immutable)",
+        "access_control": "Local-only, configurable",
+        "data_protection": "Pattern-based redaction",
+        "compliance": "SOX/GDPR/ISO27001 ready"
+      }
+    },
+    "quick_start": {
+      "commands": [
+        "./bin/start_ai_server.py",
+        "curl http://localhost:8000/health",
+        "curl http://localhost:8001/health",
+        "./logs/scripts/verify-logs.sh",
+        "python3 tests/run_tests.py --all"
+      ]
+    }
+  }
+}

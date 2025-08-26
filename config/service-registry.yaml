@@ -1,0 +1,313 @@
+# =============================================================================
+# AI-SERVER SERVICE REGISTRY
+# Centralised port assignment and service configuration
+# =============================================================================
+
+# Port Assignment Schema: 8XYZ
+# X = Category (1=Dev Profile, 8=Infrastructure, 9=External Services)
+# Y = Function Group (0=Orchestrator, 1-9=Specific Function)
+# Z = Instance Number (0-9 for multiple instances)
+
+version: "1.0.0"
+last_updated: "2025-08-26"
+
+# =============================================================================
+# PROFILE DEV (8100-8199)
+# =============================================================================
+profiles:
+  dev:
+    range: "8100-8199"
+    description: "Development profile with 6 specialized coders + orchestration"
+    
+    orchestration:
+      llm_server_orchestrator:
+        port: 8100
+        description: "Main LLM orchestrator and router"
+        service: "apps/llm-server"
+        status: "active"
+        
+    agents:
+      router:
+        port: 8101
+        description: "Task router and workflow coordinator"
+        specialization: "routing"
+        service: "apps/llm-server/agents/router.py"
+        
+      architect:
+        port: 8102
+        description: "System architect for design decisions"
+        specialization: "architecture"
+        service: "apps/llm-server/agents/architect.py"
+        
+      task_planner:
+        port: 8103
+        description: "Task breakdown and planning"
+        specialization: "planning"
+        service: "apps/llm-server/agents/task_planner.py"
+        
+      # 6 Specialized Coders
+      alpha_frontend:
+        port: 8104
+        description: "Frontend specialist (React/Vue/Angular)"
+        specialization: "frontend_specialist"
+        model: "qwen2.5-coder-7b-instruct-q6_k"
+        ram_gb: 8
+        service: "apps/llm-server/agents/coders/primary_coder.py"
+        
+      beta_backend:
+        port: 8105
+        description: "Backend specialist (APIs/DBs/Microservices)"
+        specialization: "backend_specialist" 
+        model: "deepseek-coder-v2-lite-instruct-q6_k"
+        ram_gb: 12
+        service: "apps/llm-server/agents/coders/secondary_coder.py"
+        
+      gamma_systems:
+        port: 8106
+        description: "Systems architect (DevOps/Cloud/Infrastructure)"
+        specialization: "systems_architect"
+        model: "qwen2.5-32b-instruct-q6_k"
+        ram_gb: 25
+        service: "apps/llm-server/agents/coders/systems_coder.py"
+        
+      delta_ai:
+        port: 8107
+        description: "AI/ML engineer (Algorithms/Models/Data)"
+        specialization: "ai_ml_engineer"
+        model: "qwen2.5-coder-14b-instruct-q6_k"
+        ram_gb: 13
+        service: "apps/llm-server/agents/coders/ai_coder.py"
+        
+      epsilon_mobile:
+        port: 8108
+        description: "Mobile developer (iOS/Android/React Native)"
+        specialization: "mobile_developer"
+        model: "codestral-22b-v0.1-q6_k"
+        ram_gb: 18
+        service: "apps/llm-server/agents/coders/mobile_coder.py"
+        
+      zeta_fullstack:
+        port: 8109
+        description: "Fullstack generalist (Rapid prototyping)"
+        specialization: "fullstack_generalist"
+        model: "llama-3.1-8b-instruct-q6_k"
+        ram_gb: 8
+        service: "apps/llm-server/agents/coders/fullstack_coder.py"
+        
+      # Support Agents
+      qa_checker:
+        port: 8110
+        description: "Quality assurance and code review"
+        specialization: "qa_testing"
+        service: "apps/llm-server/agents/qa_checker.py"
+        
+      debugger:
+        port: 8111
+        description: "Debugging and error resolution"
+        specialization: "debugging"
+        service: "apps/llm-server/agents/debugger.py"
+        
+      tdd_verifier:
+        port: 8112
+        description: "Test-driven development verification"
+        specialization: "testing"
+        service: "apps/llm-server/agents/tdd_verifier.py"
+        
+      vision_agent:
+        port: 8113
+        description: "Visual analysis and UI/UX guidance"
+        specialization: "vision_analysis"
+        service: "apps/llm-server/agents/vision_agent.py"
+
+# =============================================================================
+# INFRASTRUCTURE SERVICES (8800-8899)
+# =============================================================================
+infrastructure:
+  range: "8800-8899"
+  description: "Core infrastructure and data services"
+  
+  services:
+    memory_server:
+      port: 8800
+      description: "Memory-Server RAG + CAG + VK system (complete system)"
+      service: "apps/memory-server"
+      dependencies: ["embedding_services", "vector_store"]
+      status: "active"
+      
+    vector_store:
+      port: 8801
+      description: "FAISS vector database service"
+      service: "services/vector-store"
+      status: "planned"
+      
+    graph_store:
+      port: 8802
+      description: "Neo4j graph database service"
+      service: "services/graph-store" 
+      status: "planned"
+      
+    model_watcher:
+      port: 8803
+      description: "Model auto-discovery and management"
+      service: "services/model-watcher"
+      status: "active"
+
+# =============================================================================
+# EXTERNAL SERVICES (8900-8999)
+# =============================================================================
+external_services:
+  range: "8900-8999"
+  description: "Shared services consumed by multiple components"
+  
+  # Embedding Services (890X)
+  embeddings:
+    nomic_embed:
+      port: 8901
+      description: "Nomic embeddings service (if needed)"
+      model_path: "assets/models/embedding/nomic-embed-text-v1.5"
+      service: "services/embedding-nomic"
+      status: "planned"
+      
+    jina_embed:
+      port: 8902
+      description: "Jina embeddings service (if needed)"
+      model_path: "assets/models/embedding/jina-embeddings-v2-base-en"
+      service: "services/embedding-jina"
+      status: "planned"
+      
+    local_embed:
+      port: 8903
+      description: "Local TF-IDF/Hash embeddings (no downloads)"
+      service: "services/embedding-local"
+      status: "active"
+  
+  # Processing Services (891X)
+  processing:
+    document_ingestion:
+      port: 8911
+      description: "Document ingestion and preprocessing"
+      service: "services/document-processor"
+      status: "planned"
+      
+    web_scraper:
+      port: 8912
+      description: "Web scraping with Playwright"
+      service: "tools/web-scraper"
+      status: "active"
+  
+  # Analysis Services (892X)
+  analysis:
+    summarization:
+      port: 8921
+      description: "Text and code summarization"
+      service: "services/summarization"
+      status: "planned"
+      
+    code_analysis:
+      port: 8922
+      description: "Static code analysis and metrics"
+      service: "services/code-analyzer"
+      status: "planned"
+  
+  # Utility Services (893X)  
+  utilities:
+    report_generator:
+      port: 8931
+      description: "System reports and analytics"
+      service: "services/report-generator"
+      status: "planned"
+      
+    health_monitor:
+      port: 8932
+      description: "System health monitoring and alerts"
+      service: "services/health-monitor"
+      status: "planned"
+
+# =============================================================================
+# MCP SERVERS (8950-8969)
+# =============================================================================
+mcp_servers:
+  range: "8950-8969"
+  description: "Model Context Protocol servers"
+  
+  servers:
+    memory_server_mcp:
+      port: 8951
+      description: "Memory-Server MCP integration"
+      service: "tools/mcp-servers/memory-server-mcp"
+      protocol: "stdio"
+      status: "active"
+      
+    filesystem_mcp:
+      port: 8952
+      description: "Filesystem operations MCP"
+      service: "tools/mcp-servers/filesystem"
+      status: "planned"
+      
+    git_mcp:
+      port: 8953
+      description: "Git operations MCP"
+      service: "tools/mcp-servers/git"
+      status: "planned"
+
+# =============================================================================
+# DEVELOPMENT TOOLS (8970-8989)
+# =============================================================================
+dev_tools:
+  range: "8970-8989"
+  description: "Development support tools"
+  
+  tools:
+    vscode_extension:
+      port: 8971
+      description: "VSCode activity tracker extension"
+      service: "tools/vscode-activity-tracker"
+      protocol: "http"
+      status: "active"
+      
+    cli_interface:
+      port: 8972
+      description: "Command line interface"
+      service: "tools/cli-interfaces"
+      status: "active"
+
+# =============================================================================
+# CONFIGURATION AND METADATA
+# =============================================================================
+metadata:
+  total_services: 28
+  active_services: 6
+  planned_services: 22
+  ram_budget_gb: 128
+  allocated_ram_gb: 84  # For dev profile coders
+  port_ranges:
+    dev_profile: "8100-8199"
+    infrastructure: "8800-8899" 
+    external_services: "8900-8999"
+    reserved: "8990-8999"
+
+# Service Dependencies
+dependencies:
+  memory_server:
+    requires: ["local_embed", "vector_store"]
+    optional: ["nomic_embed", "jina_embed"]
+    
+  dev_agents:
+    requires: ["llm_server_orchestrator", "router"]
+    optional: ["memory_server", "vision_agent"]
+    
+  vscode_extension:
+    requires: ["memory_server"]
+    optional: ["health_monitor"]
+
+# Health Check Endpoints
+health_checks:
+  pattern: "http://localhost:{port}/health"
+  timeout_ms: 5000
+  retry_count: 3
+  
+# Auto-discovery Configuration  
+discovery:
+  enabled: true
+  scan_ranges: ["8100-8199", "8800-8899", "8900-8999"]
+  update_interval_seconds: 30
