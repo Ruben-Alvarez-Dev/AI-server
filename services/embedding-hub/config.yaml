@@ -1,0 +1,306 @@
+# =============================================================================
+# EMBEDDING HUB SERVICE CONFIGURATION
+# Single Nomic Multimodal 7B model with 6 specialized preprocessing agents
+# =============================================================================
+
+service:
+  name: "embedding-hub"
+  version: "1.0.0"
+  description: "Centralized embedding service with specialized preprocessing agents"
+  port: 8900
+  host: "0.0.0.0"
+  
+# =============================================================================
+# MODEL CONFIGURATION
+# =============================================================================
+model:
+  name: "nomic-embed-multimodal-7b"
+  provider: "nomic-ai"
+  size_gb: 7.0
+  dimensions: 768
+  max_sequence_length: 8192
+  supports_multimodal: true
+  device: "mps"  # Metal Performance Shaders for Apple Silicon
+  
+  # Model loading configuration
+  loading:
+    timeout_seconds: 120
+    retry_attempts: 3
+    warm_up_samples: 5
+    memory_map: true
+    
+  # Performance settings
+  performance:
+    batch_size: 32
+    max_concurrent_requests: 16
+    queue_timeout_seconds: 30
+    enable_caching: true
+    cache_size_mb: 512
+
+# =============================================================================
+# SPECIALIZED AGENTS CONFIGURATION
+# =============================================================================
+agents:
+  
+  # Agent 1: Late Chunking Specialist
+  late_chunking:
+    endpoint: "/embed/late-chunking"
+    port: 8901
+    description: "Optimized for Late Chunking preprocessing - embeddings before chunking"
+    
+    preprocessing:
+      type: "context_preserving"
+      options:
+        preserve_paragraph_boundaries: true
+        maintain_document_structure: true
+        context_window_overlap: 128
+        sentence_boundary_detection: true
+        
+    prompt_template: |
+      You are a Late Chunking embedding specialist. Your task is to generate embeddings 
+      that preserve contextual information across document boundaries. Focus on:
+      - Maintaining semantic continuity
+      - Preserving document structure
+      - Optimizing for subsequent chunking operations
+      
+    examples:
+      - type: "document"
+        input: "Complete research paper with multiple sections"
+        expected_output: "Context-aware embeddings preserving section relationships"
+        
+  # Agent 2: Code Embedding Specialist  
+  code_embedding:
+    endpoint: "/embed/code"
+    port: 8902
+    description: "Specialized for code syntax, functions, and programming concepts"
+    
+    preprocessing:
+      type: "code_structure_aware"
+      options:
+        preserve_indentation: true
+        extract_ast_features: true
+        normalize_variable_names: false
+        include_comments: true
+        language_detection: true
+        supported_languages: ["python", "javascript", "typescript", "go", "rust", "java"]
+        
+    prompt_template: |
+      You are a code embedding specialist. Generate embeddings that capture:
+      - Programming language syntax and semantics
+      - Function and class relationships  
+      - Variable and method dependencies
+      - Code structure and patterns
+      - Documentation and comments context
+      
+    examples:
+      - type: "function"
+        input: "def calculate_embeddings(text: str) -> np.ndarray:"
+        expected_output: "Embeddings capturing function signature and purpose"
+        
+  # Agent 3: Conversation Specialist
+  conversation_embedding:
+    endpoint: "/embed/conversation"
+    port: 8903
+    description: "Optimized for dialogue, chat history, and conversational context"
+    
+    preprocessing:
+      type: "conversational_context"
+      options:
+        preserve_turn_structure: true
+        include_speaker_information: true
+        temporal_awareness: true
+        context_window_turns: 10
+        emotion_detection: false
+        
+    prompt_template: |
+      You are a conversation embedding specialist. Focus on:
+      - Dialogue flow and turn-taking patterns
+      - Conversational context and history
+      - Speaker intentions and responses
+      - Temporal relationships between exchanges
+      - Topic evolution throughout conversations
+      
+    examples:
+      - type: "dialogue"
+        input: "User: How do I implement RAG? Assistant: RAG combines retrieval with generation..."
+        expected_output: "Embeddings capturing Q&A relationship and technical context"
+        
+  # Agent 4: Visual Content Specialist
+  visual_embedding:
+    endpoint: "/embed/visual" 
+    port: 8904
+    description: "Specialized for screenshots, diagrams, and visual UI content"
+    
+    preprocessing:
+      type: "multimodal_visual"
+      options:
+        image_resize: [768, 768]
+        extract_text_overlay: true
+        ui_element_detection: true
+        preserve_layout_information: true
+        supported_formats: ["png", "jpg", "jpeg", "webp"]
+        
+    prompt_template: |
+      You are a visual content embedding specialist. Generate embeddings that capture:
+      - Visual layout and UI structure
+      - Text content within images
+      - Interface elements and components
+      - Spatial relationships between elements
+      - Visual design patterns and aesthetics
+      
+    examples:
+      - type: "screenshot"
+        input: "VSCode editor with Python code"
+        expected_output: "Embeddings capturing both code content and IDE layout"
+        
+  # Agent 5: Query/Retrieval Specialist
+  query_retrieval:
+    endpoint: "/embed/query"
+    port: 8905
+    description: "Optimized for search queries and retrieval operations"
+    
+    preprocessing:
+      type: "query_optimization"
+      options:
+        query_expansion: true
+        intent_detection: true
+        entity_extraction: true
+        synonym_expansion: false
+        stop_word_handling: "contextual"
+        
+    prompt_template: |
+      You are a query embedding specialist optimized for retrieval. Focus on:
+      - Search intent and user goals
+      - Query expansion and synonym handling
+      - Semantic similarity for matching
+      - Relevance optimization for ranking
+      - Multi-hop reasoning support
+      
+    examples:
+      - type: "search_query"
+        input: "How to implement lazy loading in React?"
+        expected_output: "Embeddings optimized for finding relevant React lazy loading content"
+        
+  # Agent 6: Community Detection Specialist
+  community_detection:
+    endpoint: "/embed/community"
+    port: 8906
+    description: "Optimized for graph clustering and community detection in LazyGraphRAG"
+    
+    preprocessing:
+      type: "graph_relationship_aware"
+      options:
+        extract_entity_mentions: true
+        relationship_detection: true
+        clustering_optimization: true
+        community_boundary_sensitivity: high
+        
+    prompt_template: |
+      You are a community detection embedding specialist. Generate embeddings that facilitate:
+      - Graph node clustering and community formation
+      - Relationship strength measurement
+      - Semantic similarity for grouping
+      - Community boundary detection
+      - Hierarchical clustering support
+      
+    examples:
+      - type: "document_node"
+        input: "Research paper discussing machine learning algorithms"
+        expected_output: "Embeddings optimized for clustering with related ML content"
+
+# =============================================================================
+# PERFORMANCE AND MONITORING
+# =============================================================================
+monitoring:
+  enable_metrics: true
+  metrics_port: 8910
+  
+  performance_tracking:
+    - "requests_per_second"
+    - "average_latency_ms" 
+    - "queue_length"
+    - "memory_usage_mb"
+    - "gpu_utilization_percent"
+    
+  health_checks:
+    interval_seconds: 30
+    endpoints:
+      - "/health"
+      - "/metrics" 
+      - "/model/status"
+      
+  alerting:
+    enable: true
+    thresholds:
+      high_latency_ms: 5000
+      queue_overflow: 100
+      memory_usage_percent: 90
+      error_rate_percent: 5
+
+# =============================================================================
+# LOGGING CONFIGURATION  
+# =============================================================================
+logging:
+  level: "INFO"
+  format: "structured"
+  output: "both"  # console and file
+  
+  files:
+    main_log: "data/logs/embedding-hub.log"
+    performance_log: "data/logs/embedding-performance.log" 
+    error_log: "data/logs/embedding-errors.log"
+    
+  rotation:
+    max_size_mb: 100
+    backup_count: 7
+    
+  fields:
+    - "timestamp"
+    - "level"
+    - "agent"
+    - "endpoint"
+    - "duration_ms"
+    - "input_tokens"
+    - "output_dimensions"
+
+# =============================================================================
+# SECURITY AND ACCESS CONTROL
+# =============================================================================
+security:
+  enable_auth: false  # For local development
+  api_key_required: false
+  
+  rate_limiting:
+    enable: true
+    requests_per_minute: 1000
+    burst_limit: 50
+    
+  input_validation:
+    max_text_length: 50000
+    max_image_size_mb: 10
+    allowed_content_types: 
+      - "text/plain"
+      - "application/json"
+      - "image/png"
+      - "image/jpeg"
+      
+  cors:
+    enable: true
+    allowed_origins: ["http://localhost:8800"]  # Memory-Server
+
+# =============================================================================
+# DEVELOPMENT AND TESTING
+# =============================================================================
+development:
+  debug_mode: true
+  mock_model: false  # Set to true for testing without actual model
+  enable_examples: true
+  
+  test_endpoints:
+    enable: true
+    test_data_path: "tests/data/"
+    
+  documentation:
+    enable_swagger: true
+    swagger_url: "/docs"
+    include_examples: true
