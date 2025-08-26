@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="8" failures="21" skipped="0" tests="137" time="0.997" timestamp="2025-08-25T20:35:47.841345+02:00" hostname="server.local"><testcase classname="unit.test_llm_server.TestLLMServerMain" name="test_settings_initialization" time="0.128"><failure message="AttributeError: module 'server' has no attribute 'main'">tests/unit/test_llm_server.py:28: in test_settings_initialization
+    with patch('server.main.get_settings') as mock_settings:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'main'</failure></testcase><testcase classname="unit.test_llm_server.TestLLMServerMain" name="test_app_creation" time="0.001"><failure message="AttributeError: module 'server' has no attribute 'main'">tests/unit/test_llm_server.py:44: in test_app_creation
+    with patch('server.main.setup_logging'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'main'</failure></testcase><testcase classname="unit.test_llm_server.TestLLMServerMain" name="test_lifespan_startup" time="0.001"><failure message="AttributeError: module 'server' has no attribute 'main'">tests/unit/test_llm_server.py:60: in test_lifespan_startup
+    with patch('server.main.AgentManager') as mock_agent_mgr:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'main'</failure></testcase><testcase classname="unit.test_llm_server.TestLLMServerMain" name="test_lifespan_shutdown" time="0.001" /><testcase classname="unit.test_llm_server.TestAgentManager" name="test_agent_manager_initialization" time="0.001"><failure message="AttributeError: module 'server' has no attribute 'core'">tests/unit/test_llm_server.py:111: in test_agent_manager_initialization
+    with patch('server.core.AgentManager') as mock_class:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'core'</failure></testcase><testcase classname="unit.test_llm_server.TestAgentManager" name="test_agent_registry_access" time="0.000" /><testcase classname="unit.test_llm_server.TestAgentManager" name="test_agent_loading" time="0.000" /><testcase classname="unit.test_llm_server.TestAgentManager" name="test_agent_configuration" time="0.000" /><testcase classname="unit.test_llm_server.TestWorkflowManager" name="test_workflow_manager_initialization" time="0.001"><failure message="AttributeError: module 'server' has no attribute 'core'">tests/unit/test_llm_server.py:144: in test_workflow_manager_initialization
+    with patch('server.core.WorkflowManager') as mock_class:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'core'</failure></testcase><testcase classname="unit.test_llm_server.TestWorkflowManager" name="test_workflow_registry_access" time="0.000" /><testcase classname="unit.test_llm_server.TestWorkflowManager" name="test_workflow_execution" time="0.000" /><testcase classname="unit.test_llm_server.TestWorkflowManager" name="test_workflow_orchestration" time="0.000" /><testcase classname="unit.test_llm_server.TestRequestManager" name="test_request_manager_initialization" time="0.001"><failure message="AttributeError: module 'server' has no attribute 'core'">tests/unit/test_llm_server.py:176: in test_request_manager_initialization
+    with patch('server.core.RequestManager') as mock_class:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'core'</failure></testcase><testcase classname="unit.test_llm_server.TestRequestManager" name="test_concurrent_request_handling" time="0.000" /><testcase classname="unit.test_llm_server.TestRequestManager" name="test_request_timeout" time="0.000" /><testcase classname="unit.test_llm_server.TestRequestManager" name="test_request_queuing" time="0.000" /><testcase classname="unit.test_llm_server.TestResourceMonitor" name="test_resource_monitor_initialization" time="0.001"><failure message="AttributeError: module 'server' has no attribute 'monitoring'">tests/unit/test_llm_server.py:213: in test_resource_monitor_initialization
+    with patch('server.monitoring.ResourceMonitor') as mock_class:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'monitoring'</failure></testcase><testcase classname="unit.test_llm_server.TestResourceMonitor" name="test_cpu_monitoring" time="0.000" /><testcase classname="unit.test_llm_server.TestResourceMonitor" name="test_memory_monitoring" time="0.000" /><testcase classname="unit.test_llm_server.TestResourceMonitor" name="test_gpu_monitoring" time="0.000" /><testcase classname="unit.test_llm_server.TestMetricsCollector" name="test_metrics_collector_initialization" time="0.001"><failure message="AttributeError: module 'server' has no attribute 'monitoring'">tests/unit/test_llm_server.py:246: in test_metrics_collector_initialization
+    with patch('server.monitoring.MetricsCollector') as mock_class:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'monitoring'</failure></testcase><testcase classname="unit.test_llm_server.TestMetricsCollector" name="test_request_metrics" time="0.000" /><testcase classname="unit.test_llm_server.TestMetricsCollector" name="test_performance_metrics" time="0.000" /><testcase classname="unit.test_llm_server.TestMetricsCollector" name="test_error_metrics" time="0.000" /><testcase classname="unit.test_llm_server.TestLLMServerAPI" name="test_root_endpoint" time="0.016"><error message="failed on setup with &quot;AttributeError: module 'server' has no attribute 'main'&quot;">tests/unit/test_llm_server.py:280: in test_client
+    with patch('server.main.lifespan'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'main'</error></testcase><testcase classname="unit.test_llm_server.TestLLMServerAPI" name="test_health_endpoint" time="0.001"><error message="failed on setup with &quot;AttributeError: module 'server' has no attribute 'main'&quot;">tests/unit/test_llm_server.py:280: in test_client
+    with patch('server.main.lifespan'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'main'</error></testcase><testcase classname="unit.test_llm_server.TestLLMServerAPI" name="test_workflows_endpoint" time="0.001"><error message="failed on setup with &quot;AttributeError: module 'server' has no attribute 'main'&quot;">tests/unit/test_llm_server.py:280: in test_client
+    with patch('server.main.lifespan'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'main'</error></testcase><testcase classname="unit.test_llm_server.TestLLMServerAPI" name="test_agents_endpoint" time="0.001"><error message="failed on setup with &quot;AttributeError: module 'server' has no attribute 'main'&quot;">tests/unit/test_llm_server.py:280: in test_client
+    with patch('server.main.lifespan'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'main'</error></testcase><testcase classname="unit.test_llm_server.TestLLMServerAPI" name="test_monitoring_endpoint" time="0.001"><error message="failed on setup with &quot;AttributeError: module 'server' has no attribute 'main'&quot;">tests/unit/test_llm_server.py:280: in test_client
+    with patch('server.main.lifespan'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'server' has no attribute 'main'</error></testcase><testcase classname="unit.test_llm_server.TestSpecializedAgents" name="test_router_agent" time="0.000" /><testcase classname="unit.test_llm_server.TestSpecializedAgents" name="test_architect_agent" time="0.000" /><testcase classname="unit.test_llm_server.TestSpecializedAgents" name="test_primary_coder_agent" time="0.000" /><testcase classname="unit.test_llm_server.TestSpecializedAgents" name="test_secondary_coder_agent" time="0.000" /><testcase classname="unit.test_llm_server.TestSpecializedAgents" name="test_qa_checker_agent" time="0.000" /><testcase classname="unit.test_llm_server.TestSpecializedAgents" name="test_debugger_agent" time="0.000" /><testcase classname="unit.test_llm_server.TestWorkflowTypes" name="test_development_workflow" time="0.000" /><testcase classname="unit.test_llm_server.TestWorkflowTypes" name="test_quick_fix_workflow" time="0.000" /><testcase classname="unit.test_llm_server.TestWorkflowTypes" name="test_code_review_workflow" time="0.000" /><testcase classname="unit.test_llm_server.TestOpenAICompatibility" name="test_openai_chat_completions" time="0.000" /><testcase classname="unit.test_llm_server.TestOpenAICompatibility" name="test_openai_models_endpoint" time="0.000" /><testcase classname="unit.test_llm_server.TestOpenAICompatibility" name="test_openai_request_format" time="0.000" /><testcase classname="unit.test_llm_server.TestOpenAICompatibility" name="test_openai_response_format" time="0.000" /><testcase classname="unit.test_llm_server.TestPerformanceOptimization" name="test_metal_acceleration" time="0.000" /><testcase classname="unit.test_llm_server.TestPerformanceOptimization" name="test_memory_efficiency" time="0.000" /><testcase classname="unit.test_llm_server.TestPerformanceOptimization" name="test_concurrent_processing" time="0.000" /><testcase classname="unit.test_llm_server.TestPerformanceOptimization" name="test_model_loading_optimization" time="0.000" /><testcase classname="unit.test_llm_server.TestErrorHandling" name="test_startup_errors" time="0.000" /><testcase classname="unit.test_llm_server.TestErrorHandling" name="test_runtime_errors" time="0.000" /><testcase classname="unit.test_llm_server.TestErrorHandling" name="test_model_loading_errors" time="0.000" /><testcase classname="unit.test_llm_server.TestErrorHandling" name="test_request_processing_errors" time="0.000" /><testcase classname="unit.test_memory_server.TestMemoryServerMain" name="test_app_state_initialization" time="0.001"><failure message="AssertionError: assert 'lazy_indexer' in &lt;MagicMock name='modules.get().app_state' id='4360727456'&gt;">tests/unit/test_memory_server.py:33: in test_app_state_initialization
+    assert "lazy_indexer" in app_state
+E   AssertionError: assert 'lazy_indexer' in &lt;MagicMock name='modules.get().app_state' id='4360727456'&gt;</failure></testcase><testcase classname="unit.test_memory_server.TestMemoryServerMain" name="test_initialize_memory_server_success" time="0.044"><failure message="AttributeError: module 'core' has no attribute 'lazy_graph'">tests/unit/test_memory_server.py:44: in test_initialize_memory_server_success
+    with patch('core.lazy_graph.LazyGraphIndexer') as mock_lazy:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'core' has no attribute 'lazy_graph'</failure></testcase><testcase classname="unit.test_memory_server.TestMemoryServerMain" name="test_initialize_memory_server_failure" time="0.001"><failure message="AttributeError: module 'core' has no attribute 'lazy_graph'">tests/unit/test_memory_server.py:76: in test_initialize_memory_server_failure
+    with patch('core.lazy_graph.LazyGraphIndexer') as mock_lazy:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'core' has no attribute 'lazy_graph'</failure></testcase><testcase classname="unit.test_memory_server.TestMemoryServerMain" name="test_cleanup_memory_server" time="0.009"><failure message="ModuleNotFoundError: No module named 'rich'">tests/unit/test_memory_server.py:88: in test_cleanup_memory_server
+    from api.main import app_state, cleanup_memory_server
+apps/memory-server/api/__init__.py:6: in &lt;module&gt;
+    from .main import app
+apps/memory-server/api/main.py:18: in &lt;module&gt;
+    from core.logging_config import setup_logging, get_logger
+apps/memory-server/core/logging_config.py:12: in &lt;module&gt;
+    from rich.console import Console
+E   ModuleNotFoundError: No module named 'rich'</failure></testcase><testcase classname="unit.test_memory_server.TestMemoryServerAPI" name="test_root_endpoint" time="0.001"><error message="failed on setup with &quot;ModuleNotFoundError: No module named 'rich'&quot;">tests/unit/test_memory_server.py:112: in test_client
+    from api.main import app
+apps/memory-server/api/__init__.py:6: in &lt;module&gt;
+    from .main import app
+apps/memory-server/api/main.py:18: in &lt;module&gt;
+    from core.logging_config import setup_logging, get_logger
+apps/memory-server/core/logging_config.py:12: in &lt;module&gt;
+    from rich.console import Console
+E   ModuleNotFoundError: No module named 'rich'</error></testcase><testcase classname="unit.test_memory_server.TestMemoryServerAPI" name="test_health_endpoint" time="0.001"><error message="failed on setup with &quot;ModuleNotFoundError: No module named 'rich'&quot;">tests/unit/test_memory_server.py:112: in test_client
+    from api.main import app
+apps/memory-server/api/__init__.py:6: in &lt;module&gt;
+    from .main import app
+apps/memory-server/api/main.py:18: in &lt;module&gt;
+    from core.logging_config import setup_logging, get_logger
+apps/memory-server/core/logging_config.py:12: in &lt;module&gt;
+    from rich.console import Console
+E   ModuleNotFoundError: No module named 'rich'</error></testcase><testcase classname="unit.test_memory_server.TestMemoryServerAPI" name="test_docs_endpoint" time="0.001"><error message="failed on setup with &quot;ModuleNotFoundError: No module named 'rich'&quot;">tests/unit/test_memory_server.py:112: in test_client
+    from api.main import app
+apps/memory-server/api/__init__.py:6: in &lt;module&gt;
+    from .main import app
+apps/memory-server/api/main.py:18: in &lt;module&gt;
+    from core.logging_config import setup_logging, get_logger
+apps/memory-server/core/logging_config.py:12: in &lt;module&gt;
+    from rich.console import Console
+E   ModuleNotFoundError: No module named 'rich'</error></testcase><testcase classname="unit.test_memory_server.TestLazyGraphIndexer" name="test_indexer_initialization" time="0.001"><failure message="AttributeError: module 'core' has no attribute 'lazy_graph'">tests/unit/test_memory_server.py:160: in test_indexer_initialization
+    with patch('core.lazy_graph.LazyGraphIndexer') as mock_class:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'core' has no attribute 'lazy_graph'</failure></testcase><testcase classname="unit.test_memory_server.TestLazyGraphIndexer" name="test_indexer_configuration" time="0.000" /><testcase classname="unit.test_memory_server.TestLazyGraphIndexer" name="test_indexer_graph_creation" time="0.000" /><testcase classname="unit.test_memory_server.TestLazyGraphIndexer" name="test_indexer_cost_efficiency" time="0.000" /><testcase classname="unit.test_memory_server.TestLateChunkingEngine" name="test_chunking_engine_initialization" time="0.003"><failure message="AttributeError: module 'core' has no attribute 'late_chunking'">tests/unit/test_memory_server.py:193: in test_chunking_engine_initialization
+    with patch('core.late_chunking.LateChunkingEngine') as mock_class:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'core' has no attribute 'late_chunking'</failure></testcase><testcase classname="unit.test_memory_server.TestLateChunkingEngine" name="test_chunking_context_preservation" time="0.000" /><testcase classname="unit.test_memory_server.TestLateChunkingEngine" name="test_chunking_token_limits" time="0.000" /><testcase classname="unit.test_memory_server.TestLateChunkingEngine" name="test_chunking_performance" time="0.000" /><testcase classname="unit.test_memory_server.TestFusionLayer" name="test_fusion_layer_initialization" time="0.001"><failure message="AttributeError: module 'core' has no attribute 'hybrid_store'">tests/unit/test_memory_server.py:225: in test_fusion_layer_initialization
+    with patch('core.hybrid_store.FusionLayer') as mock_class:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'core' has no attribute 'hybrid_store'</failure></testcase><testcase classname="unit.test_memory_server.TestFusionLayer" name="test_vector_graph_fusion" time="0.000" /><testcase classname="unit.test_memory_server.TestFusionLayer" name="test_fusion_optimization" time="0.000" /><testcase classname="unit.test_memory_server.TestDocumentProcessing" name="test_document_ingestion" time="0.000" /><testcase classname="unit.test_memory_server.TestDocumentProcessing" name="test_multimodal_support" time="0.000" /><testcase classname="unit.test_memory_server.TestDocumentProcessing" name="test_document_chunking" time="0.000" /><testcase classname="unit.test_memory_server.TestDocumentProcessing" name="test_document_indexing" time="0.000" /><testcase classname="unit.test_memory_server.TestSearchFunctionality" name="test_vector_search" time="0.000" /><testcase classname="unit.test_memory_server.TestSearchFunctionality" name="test_graph_search" time="0.000" /><testcase classname="unit.test_memory_server.TestSearchFunctionality" name="test_hybrid_search" time="0.000" /><testcase classname="unit.test_memory_server.TestSearchFunctionality" name="test_search_performance" time="0.000" /><testcase classname="unit.test_memory_server.TestSearchFunctionality" name="test_search_accuracy" time="0.000" /><testcase classname="unit.test_memory_server.TestMemoryLayers" name="test_working_memory" time="0.000" /><testcase classname="unit.test_memory_server.TestMemoryLayers" name="test_episodic_memory" time="0.000" /><testcase classname="unit.test_memory_server.TestMemoryLayers" name="test_semantic_memory" time="0.000" /><testcase classname="unit.test_memory_server.TestMemoryLayers" name="test_procedural_memory" time="0.000" /><testcase classname="unit.test_memory_server.TestErrorHandling" name="test_initialization_errors" time="0.000" /><testcase classname="unit.test_memory_server.TestErrorHandling" name="test_processing_errors" time="0.000" /><testcase classname="unit.test_memory_server.TestErrorHandling" name="test_search_errors" time="0.000" /><testcase classname="unit.test_memory_server.TestErrorHandling" name="test_memory_errors" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcher" name="test_model_watcher_initialization" time="0.001" /><testcase classname="unit.test_model_watcher.TestModelWatcher" name="test_model_watcher_start_stop" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcher" name="test_model_discovery" time="0.001" /><testcase classname="unit.test_model_watcher.TestModelWatcher" name="test_model_categorization" time="0.001" /><testcase classname="unit.test_model_watcher.TestModelWatcher" name="test_model_file_validation" time="0.001" /><testcase classname="unit.test_model_watcher.TestModelWatcherDaemon" name="test_daemon_startup" time="0.001"><failure message="AttributeError: module 'services' has no attribute 'model_watcher'">tests/unit/test_model_watcher.py:168: in test_daemon_startup
+    with patch('services.model_watcher.ModelWatcherDaemon') as mock_daemon:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'services' has no attribute 'model_watcher'</failure></testcase><testcase classname="unit.test_model_watcher.TestModelWatcherDaemon" name="test_daemon_shutdown" time="0.000"><failure message="AttributeError: module 'services' has no attribute 'model_watcher'">tests/unit/test_model_watcher.py:180: in test_daemon_shutdown
+    with patch('services.model_watcher.ModelWatcherDaemon') as mock_daemon:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'services' has no attribute 'model_watcher'</failure></testcase><testcase classname="unit.test_model_watcher.TestModelWatcherDaemon" name="test_daemon_background_operation" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherDaemon" name="test_daemon_error_handling" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherAutoStart" name="test_background_start_function" time="0.000"><failure message="AttributeError: module 'services' has no attribute 'model_watcher'">tests/unit/test_model_watcher.py:205: in test_background_start_function
+    with patch('services.model_watcher.auto_start.threading.Thread') as mock_thread:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'services' has no attribute 'model_watcher'</failure></testcase><testcase classname="unit.test_model_watcher.TestModelWatcherAutoStart" name="test_auto_start_configuration" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherAutoStart" name="test_auto_start_error_handling" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelInventory" name="test_inventory_creation" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelInventory" name="test_inventory_updates" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelInventory" name="test_inventory_persistence" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelInventory" name="test_inventory_metadata" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelNotifications" name="test_model_added_notification" time="0.001" /><testcase classname="unit.test_model_watcher.TestModelNotifications" name="test_model_removed_notification" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelNotifications" name="test_model_modified_notification" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelNotifications" name="test_notification_filtering" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherIntegration" name="test_startup_script_integration" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherIntegration" name="test_memory_server_integration" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherIntegration" name="test_llm_server_integration" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherIntegration" name="test_health_monitoring_integration" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherPerformance" name="test_large_directory_scanning" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherPerformance" name="test_frequent_changes_handling" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherPerformance" name="test_memory_usage" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherPerformance" name="test_cpu_usage" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherConfiguration" name="test_models_directory_configuration" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherConfiguration" name="test_watch_patterns_configuration" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherConfiguration" name="test_notification_configuration" time="0.000" /><testcase classname="unit.test_model_watcher.TestModelWatcherConfiguration" name="test_performance_configuration" time="0.000" /><testcase classname="unit.test_model_watcher.TestErrorHandling" name="test_invalid_models_directory" time="0.000" /><testcase classname="unit.test_model_watcher.TestErrorHandling" name="test_permission_errors" time="0.000" /><testcase classname="unit.test_model_watcher.TestErrorHandling" name="test_file_system_errors" time="0.000" /><testcase classname="unit.test_model_watcher.TestErrorHandling" name="test_corrupted_model_files" time="0.000" /><testcase classname="unit.test_startup_script.TestAIServerManager" name="test_manager_initialization" time="0.001" /><testcase classname="unit.test_startup_script.TestAIServerManager" name="test_start_memory_server_success" time="0.001" /><testcase classname="unit.test_startup_script.TestAIServerManager" name="test_start_memory_server_failure" time="0.001" /><testcase classname="unit.test_startup_script.TestAIServerManager" name="test_start_llm_server_success" time="0.001" /><testcase classname="unit.test_startup_script.TestAIServerManager" name="test_start_llm_server_failure" time="0.001" /><testcase classname="unit.test_startup_script.TestAIServerManager" name="test_start_model_watcher_success" time="0.001"><failure message="AttributeError: module 'services' has no attribute 'model_watcher'">/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1423: in patched
+    with self.decoration_helper(patched,
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py:141: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1405: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py:530: in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'services' has no attribute 'model_watcher'</failure></testcase><testcase classname="unit.test_startup_script.TestAIServerManager" name="test_start_model_watcher_failure" time="0.001"><failure message="AttributeError: module 'services' has no attribute 'model_watcher'">/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1423: in patched
+    with self.decoration_helper(patched,
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py:141: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1405: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py:530: in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:528: in resolve_name
+    result = getattr(result, p)
+             ^^^^^^^^^^^^^^^^^^
+E   AttributeError: module 'services' has no attribute 'model_watcher'</failure></testcase><testcase classname="unit.test_startup_script.TestAIServerManager" name="test_check_services_health_success" time="0.021" /><testcase classname="unit.test_startup_script.TestAIServerManager" name="test_check_services_health_failure" time="0.001" /><testcase classname="unit.test_startup_script.TestAIServerManager" name="test_shutdown" time="0.001" /><testcase classname="unit.test_startup_script.TestMainFunctions" name="test_main_function" time="0.001"><failure message="ModuleNotFoundError: No module named 'start_ai_server'">tests/unit/test_startup_script.py:188: in test_main_function
+    with patch('start_ai_server.AIServerManager') as mock_manager_class:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1481: in __enter__
+    self.target = self.getter()
+                  ^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pkgutil.py:513: in resolve_name
+    mod = importlib.import_module(modname)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;frozen importlib._bootstrap&gt;:1387: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1324: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'start_ai_server'</failure></testcase><testcase classname="unit.test_startup_script.TestProcessManagement" name="test_process_list_management" time="0.000" /><testcase classname="unit.test_startup_script.TestProcessManagement" name="test_thread_list_management" time="0.000" /><testcase classname="unit.test_startup_script.TestErrorHandling" name="test_import_error_handling" time="0.000" /><testcase classname="unit.test_startup_script.TestErrorHandling" name="test_subprocess_error_handling" time="0.000" /><testcase classname="unit.test_startup_script.TestErrorHandling" name="test_network_error_handling" time="0.001" /></testsuite></testsuites>

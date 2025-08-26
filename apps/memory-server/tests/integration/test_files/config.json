@@ -1,0 +1,17 @@
+{
+  "api_settings": {
+    "port": 8001,
+    "host": "localhost",
+    "debug": false
+  },
+  "memory_settings": {
+    "working_memory_size": 131072,
+    "episodic_memory_size": 2097152,
+    "semantic_memory_unlimited": true
+  },
+  "models": {
+    "embedding_model": "jinaai/jina-embeddings-v2-base-en",
+    "colbert_model": "jinaai/jina-colbert-v2",
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  }
+}

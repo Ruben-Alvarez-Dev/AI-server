@@ -1,0 +1,1 @@
+{"created": 1756146949.137208, "duration": 0.0054051876068115234, "exitcode": 5, "root": "/Users/server/AI-projects/AI-server/tests", "environment": {}, "summary": {"total": 0, "collected": 0}, "collectors": [{"nodeid": "", "outcome": "passed", "result": [{"nodeid": "integration", "type": "Package"}]}, {"nodeid": "integration", "outcome": "passed", "result": []}], "tests": []}
