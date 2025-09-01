@@ -1,0 +1,249 @@
+{
+  "code_embeddings": {
+    "collection_info": {
+      "description": "Source code and programming content embeddings",
+      "vector_size": 768,
+      "distance": "Cosine",
+      "use_case": "code",
+      "metadata_fields": [
+        "language",
+        "repository",
+        "file_path",
+        "function_name",
+        "line_number"
+      ]
+    },
+    "tests": {
+      "insertion": {
+        "status": "SUCCESS",
+        "vectors_inserted": 50,
+        "insert_time_ms": 42.58,
+        "vectors_per_second": 1174.17,
+        "operation_id": 0,
+        "vector_dimension": 768
+      },
+      "search": {
+        "status": "SUCCESS",
+        "basic_search": {
+          "results_found": 10,
+          "search_time_ms": 1.54,
+          "top_score": 0.0722
+        },
+        "filtered_search": {
+          "results_found": 5,
+          "search_time_ms": 0.71,
+          "top_score": 0.016
+        },
+        "vector_dimension": 768
+      },
+      "update": {
+        "status": "SUCCESS",
+        "vectors_updated": 5,
+        "update_time_ms": 5.34,
+        "operation_id": 0,
+        "vector_dimension": 768
+      },
+      "delete": {
+        "status": "SUCCESS",
+        "vectors_deleted": 5,
+        "delete_time_ms": 4.73,
+        "operation_id": 0
+      }
+    },
+    "stats": {
+      "status": "SUCCESS",
+      "vectors_count": null,
+      "indexed_vectors_count": 0,
+      "points_count": 45,
+      "segments_count": 1,
+      "collection_status": "green",
+      "disk_data_size": null,
+      "ram_data_size": null
+    }
+  },
+  "document_embeddings": {
+    "collection_info": {
+      "description": "Document and text content embeddings",
+      "vector_size": 1536,
+      "distance": "Cosine",
+      "use_case": "documents",
+      "metadata_fields": [
+        "title",
+        "author",
+        "document_type",
+        "created_at",
+        "tags"
+      ]
+    },
+    "tests": {
+      "insertion": {
+        "status": "SUCCESS",
+        "vectors_inserted": 50,
+        "insert_time_ms": 60.85,
+        "vectors_per_second": 821.73,
+        "operation_id": 0,
+        "vector_dimension": 1536
+      },
+      "search": {
+        "status": "SUCCESS",
+        "basic_search": {
+          "results_found": 10,
+          "search_time_ms": 0.35,
+          "top_score": 0.044
+        },
+        "filtered_search": {
+          "results_found": 5,
+          "search_time_ms": 0.5,
+          "top_score": 0.044
+        },
+        "vector_dimension": 1536
+      },
+      "update": {
+        "status": "SUCCESS",
+        "vectors_updated": 5,
+        "update_time_ms": 7.67,
+        "operation_id": 0,
+        "vector_dimension": 1536
+      },
+      "delete": {
+        "status": "SUCCESS",
+        "vectors_deleted": 5,
+        "delete_time_ms": 1.33,
+        "operation_id": 0
+      }
+    },
+    "stats": {
+      "status": "SUCCESS",
+      "vectors_count": null,
+      "indexed_vectors_count": 0,
+      "points_count": 45,
+      "segments_count": 1,
+      "collection_status": "green",
+      "disk_data_size": null,
+      "ram_data_size": null
+    }
+  },
+  "summary_embeddings": {
+    "collection_info": {
+      "description": "Summary and abstract embeddings",
+      "vector_size": 512,
+      "distance": "Cosine",
+      "use_case": "summaries",
+      "metadata_fields": [
+        "original_length",
+        "summary_type",
+        "key_topics",
+        "confidence_score"
+      ]
+    },
+    "tests": {
+      "insertion": {
+        "status": "SUCCESS",
+        "vectors_inserted": 50,
+        "insert_time_ms": 32.8,
+        "vectors_per_second": 1524.57,
+        "operation_id": 0,
+        "vector_dimension": 512
+      },
+      "search": {
+        "status": "SUCCESS",
+        "basic_search": {
+          "results_found": 10,
+          "search_time_ms": 0.2,
+          "top_score": 0.1125
+        },
+        "filtered_search": {
+          "results_found": 5,
+          "search_time_ms": 0.5,
+          "top_score": 0.0809
+        },
+        "vector_dimension": 512
+      },
+      "update": {
+        "status": "SUCCESS",
+        "vectors_updated": 5,
+        "update_time_ms": 3.24,
+        "operation_id": 0,
+        "vector_dimension": 512
+      },
+      "delete": {
+        "status": "SUCCESS",
+        "vectors_deleted": 5,
+        "delete_time_ms": 6.69,
+        "operation_id": 0
+      }
+    },
+    "stats": {
+      "status": "SUCCESS",
+      "vectors_count": null,
+      "indexed_vectors_count": 0,
+      "points_count": 45,
+      "segments_count": 1,
+      "collection_status": "green",
+      "disk_data_size": null,
+      "ram_data_size": null
+    }
+  },
+  "general_embeddings": {
+    "collection_info": {
+      "description": "General purpose embeddings storage",
+      "vector_size": 1024,
+      "distance": "Cosine",
+      "use_case": "embeddings",
+      "metadata_fields": [
+        "content_type",
+        "source",
+        "category",
+        "importance",
+        "timestamp"
+      ]
+    },
+    "tests": {
+      "insertion": {
+        "status": "SUCCESS",
+        "vectors_inserted": 50,
+        "insert_time_ms": 53.46,
+        "vectors_per_second": 935.3,
+        "operation_id": 0,
+        "vector_dimension": 1024
+      },
+      "search": {
+        "status": "SUCCESS",
+        "basic_search": {
+          "results_found": 10,
+          "search_time_ms": 0.27,
+          "top_score": 0.0686
+        },
+        "filtered_search": {
+          "results_found": 5,
+          "search_time_ms": 0.48,
+          "top_score": 0.039
+        },
+        "vector_dimension": 1024
+      },
+      "update": {
+        "status": "SUCCESS",
+        "vectors_updated": 5,
+        "update_time_ms": 5.18,
+        "operation_id": 0,
+        "vector_dimension": 1024
+      },
+      "delete": {
+        "status": "SUCCESS",
+        "vectors_deleted": 5,
+        "delete_time_ms": 1.64,
+        "operation_id": 0
+      }
+    },
+    "stats": {
+      "status": "SUCCESS",
+      "vectors_count": null,
+      "indexed_vectors_count": 0,
+      "points_count": 45,
+      "segments_count": 1,
+      "collection_status": "green",
+      "disk_data_size": null,
+      "ram_data_size": null
+    }
+  }
+}
