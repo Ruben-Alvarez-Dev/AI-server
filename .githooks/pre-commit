@@ -4,12 +4,12 @@
 
 set -euo pipefail
 
-echo "🔍 Pre-commit: Validando reglas..."
+echo "🔍 Pre-commit: Validating rules..."
 
 # Branch enforcement: only main
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [ "$CURRENT_BRANCH" != "main" ]; then
-  echo "❌ Solo se permite commitear en 'main' (rama actual: $CURRENT_BRANCH)"
+  echo "❌ Only 'main' commits are allowed (current: $CURRENT_BRANCH)"
   exit 1
 fi
 
@@ -17,42 +17,42 @@ fi
 AUTHOR_NAME=$(git config user.name || echo "")
 AUTHOR_EMAIL=$(git config user.email || echo "")
 if [ "$AUTHOR_NAME" != "Ruben-Alvarez-Dev" ] || [ "$AUTHOR_EMAIL" != "ruben.alvarez.dev@gmail.com" ]; then
-  echo "❌ FATAL: Autor inválido. Debe ser Ruben-Alvarez-Dev <ruben.alvarez.dev@gmail.com>"
+  echo "❌ FATAL: Invalid author. Must be Ruben-Alvarez-Dev <ruben.alvarez.dev@gmail.com>"
   exit 1
 fi
 
 # Directory rules
 if grep -q "^/logs\|^logs/" .gitignore; then
-  echo "❌ FATAL: /logs/ encontrado en .gitignore - DEBE commitearse"
+  echo "❌ FATAL: /logs/ found in .gitignore - MUST be committed"
   exit 1
 fi
 
 if grep -q "^/plan\|^plan/" .gitignore; then
-  echo "❌ FATAL: /plan/ encontrado en .gitignore - DEBE commitearse"
+  echo "❌ FATAL: /plan/ found in .gitignore - MUST be committed"
   exit 1
 fi
 
 if ! grep -q "OLD_VERSION" .gitignore; then
-  echo "❌ FATAL: OLD_VERSION no encontrado en .gitignore - DEBE ignorarse"
+  echo "❌ FATAL: OLD_VERSION not found in .gitignore - MUST be ignored"
   exit 1
 fi
 
 # OLD_VERSION must not be in staged changes
 if git diff --cached --name-only | grep -q "OLD_VERSION"; then
-  echo "❌ FATAL: Detectados archivos en OLD_VERSION - NUNCA commitear OLD_VERSION"
+  echo "❌ FATAL: Files under OLD_VERSION detected - NEVER commit OLD_VERSION"
   exit 1
 fi
 
 # Ensure there are staged changes
 if git diff --cached --quiet; then
-  echo "❌ No hay cambios staged para committear"
+  echo "❌ No staged changes to commit"
   exit 1
 fi
 
 # Significance check
 CHANGED_LINES=$(git diff --cached --numstat | awk '{s+=$1+$2} END {print s+0}')
 if [ "$CHANGED_LINES" -lt 3 ]; then
-  echo "❌ Cambios muy pequeños (<3 líneas), aumenta el contenido antes de commitear"
+  echo "❌ Insignificant change (<3 lines). Increase content before committing"
   exit 1
 fi
 
@@ -70,7 +70,7 @@ CODE_CHANGED=$(echo "$STAGED_FILES" | grep -E '\.(py|js|ts|tsx|css|scss|yaml|yml
 if [ -n "$CODE_CHANGED" ]; then
   NEW_LOG=$(git diff --cached --name-only --diff-filter=A | grep -E '^logs/[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{6}_.+\.md$' || true)
   if [ -z "$NEW_LOG" ]; then
-    echo "❌ Falta log de checkpoint en logs/YYYY-MM-DD_HHMMSS_X.Y.Z_keyword.md (añade uno nuevo)"
+    echo "❌ Missing checkpoint log in logs/YYYY-MM-DD_HHMMSS_X.Y.Z_keyword.md (add a new one)"
     exit 1
   fi
 fi
@@ -93,7 +93,7 @@ if echo "$STAGED_FILES" | grep -E '\.(css|scss)$' >/dev/null; then
   if git diff --cached -U0 -- '*.css' '*.scss' 2>/dev/null | grep -E "^\+\s*(/\*|\*).*${SPANISH_DIACRITICS}" >/dev/null; then BAD_COMMENTS=true; fi
 fi
 if [ "$BAD_COMMENTS" = true ]; then
-  echo "❌ Comentarios en español detectados en cambios. Los comentarios técnicos deben estar en inglés."
+  echo "❌ Spanish comments detected. Technical comments must be in English."
   exit 1
 fi
 
@@ -106,14 +106,14 @@ if echo "$STAGED_FILES" | grep -E '\.(js|ts|tsx)$' >/dev/null; then
   if git diff --cached -U0 -- '*.js' '*.ts' '*.tsx' 2>/dev/null | grep -E "^\+.*console\.(log|info|warn|error)\(.*${SPANISH_DIACRITICS}" >/dev/null; then BAD_LOGS=true; fi
 fi
 if [ "$BAD_LOGS" = true ]; then
-  echo "❌ Mensajes de log con caracteres no ingleses detectados. Los logs de sistema deben estar en inglés."
+  echo "❌ Non-English log messages detected. System logs must be in English."
   exit 1
 fi
 
 # TypeScript interfaces must start with I
 if echo "$STAGED_FILES" | grep -E '\.(ts|tsx)$' >/dev/null; then
   if git diff --cached -U0 -- '*.ts' '*.tsx' 2>/dev/null | grep -E "^\+\s*interface\s+[A-HJ-Z]" >/dev/null; then
-    echo "❌ Interfaces TypeScript deben usar prefijo 'I' (ej: interface IUserData)"
+    echo "❌ TypeScript interfaces must use 'I' prefix (e.g., interface IUserData)"
     exit 1
   fi
 fi
@@ -121,7 +121,7 @@ fi
 # CSS BEM: disallow '.atlas_' (must be '.atlas-')
 if echo "$STAGED_FILES" | grep -E '\.(css|scss)$' >/dev/null; then
   if git diff --cached -U0 -- '*.css' '*.scss' 2>/dev/null | grep -E "^\+.*\.atlas_" >/dev/null; then
-    echo "❌ BEM/CSS: Usa '.atlas-' en lugar de '.atlas_' en clases CSS"
+    echo "❌ BEM/CSS: Use '.atlas-' instead of '.atlas_' in CSS classes"
     exit 1
   fi
 fi
@@ -139,6 +139,5 @@ if [ -n "$WEB_CHANGED" ] && command -v prettier >/dev/null 2>&1; then
   git diff --cached --name-only -- '*.js' '*.ts' '*.tsx' '*.css' '*.scss' '*.md' 2>/dev/null | xargs -r prettier -c
 fi
 
-echo "✅ Pre-commit: Validaciones OK"
+echo "✅ Pre-commit: All checks passed"
 exit 0
-

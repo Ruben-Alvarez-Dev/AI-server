@@ -485,3 +485,4 @@
 [4622,590s][info ][safepoint   ] Safepoint "Cleanup", Time since last: 750783411834 ns, Reaching safepoint: 13208 ns, Cleanup: 37875 ns, At safepoint: 1917 ns, Leaving safepoint: 1541 ns, Total: 54541 ns
 [5163,338s][info ][safepoint   ] Safepoint "Cleanup", Time since last: 540747626875 ns, Reaching safepoint: 51209 ns, Cleanup: 84041 ns, At safepoint: 4750 ns, Leaving safepoint: 1959 ns, Total: 141959 ns
 [5375,971s][info ][safepoint   ] Safepoint "Cleanup", Time since last: 212632731541 ns, Reaching safepoint: 54625 ns, Cleanup: 52792 ns, At safepoint: 4375 ns, Leaving safepoint: 2250 ns, Total: 114042 ns
+[7204,686s][info ][safepoint   ] Safepoint "Cleanup", Time since last: 1828714708208 ns, Reaching safepoint: 55667 ns, Cleanup: 91125 ns, At safepoint: 5708 ns, Leaving safepoint: 2250 ns, Total: 154750 ns

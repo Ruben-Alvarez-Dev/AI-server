@@ -4,18 +4,18 @@
 
 set -euo pipefail
 
-echo "🔍 Validando reglas críticas..."
+echo "🔍 Validating critical rules..."
 
 # 0. Ensure inside a Git repo
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  echo "❌ No es un repositorio Git"
+  echo "❌ Not a Git repository"
   exit 1
 fi
 
 # 0.1 Ensure current branch is main
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [ "$CURRENT_BRANCH" != "main" ]; then
-  echo "❌ Solo se permite commitear en 'main' (rama actual: $CURRENT_BRANCH)"
+  echo "❌ Only 'main' commits are allowed (current: $CURRENT_BRANCH)"
   exit 1
 fi
 
@@ -23,43 +23,43 @@ fi
 AUTHOR_NAME=$(git config user.name || echo "")
 AUTHOR_EMAIL=$(git config user.email || echo "")
 if [ "$AUTHOR_NAME" != "Ruben-Alvarez-Dev" ] || [ "$AUTHOR_EMAIL" != "ruben.alvarez.dev@gmail.com" ]; then
-  echo "❌ FATAL: Autor inválido. Debe ser Ruben-Alvarez-Dev <ruben.alvarez.dev@gmail.com>"
-  echo "   Configura Git: git config --global user.name 'Ruben-Alvarez-Dev' && git config --global user.email 'ruben.alvarez.dev@gmail.com'"
+  echo "❌ FATAL: Invalid author. Must be Ruben-Alvarez-Dev <ruben.alvarez.dev@gmail.com>"
+  echo "   Configure Git: git config --global user.name 'Ruben-Alvarez-Dev' && git config --global user.email 'ruben.alvarez.dev@gmail.com'"
   exit 1
 fi
 
 # 1. Directory rules validation
 if grep -q "^/logs\|^logs/" .gitignore; then
-  echo "❌ FATAL: /logs/ encontrado en .gitignore - DEBE commitearse"
+  echo "❌ FATAL: /logs/ found in .gitignore - MUST be committed"
   exit 1
 fi
 
 if grep -q "^/plan\|^plan/" .gitignore; then
-  echo "❌ FATAL: /plan/ encontrado en .gitignore - DEBE commitearse"
+  echo "❌ FATAL: /plan/ found in .gitignore - MUST be committed"
   exit 1
 fi
 
 if ! grep -q "OLD_VERSION" .gitignore; then
-  echo "❌ FATAL: OLD_VERSION no encontrado en .gitignore - DEBE ignorarse"
+  echo "❌ FATAL: OLD_VERSION not found in .gitignore - MUST be ignored"
   exit 1
 fi
 
 # 2. Ensure OLD_VERSION is not staged
 if git diff --cached --name-only | grep -q "OLD_VERSION"; then
-  echo "❌ FATAL: Detectados archivos en OLD_VERSION - NUNCA commitear OLD_VERSION"
+  echo "❌ FATAL: Files under OLD_VERSION detected - NEVER commit OLD_VERSION"
   exit 1
 fi
 
 # 3. Ensure there are staged changes
 if git diff --cached --quiet; then
-  echo "❌ No hay cambios staged para committear"
+  echo "❌ No staged changes to commit"
   exit 0
 fi
 
 # 4. Significance check
 CHANGED_LINES=$(git diff --cached --numstat | awk '{s+=$1+$2} END {print s+0}')
 if [ "$CHANGED_LINES" -lt 3 ]; then
-  echo "❌ Cambios muy pequeños (<3 líneas), no se hace commit"
+  echo "❌ Insignificant change (<3 lines). Not committing"
   git reset HEAD .
   exit 0
 fi
@@ -78,7 +78,7 @@ CODE_CHANGED=$(echo "$STAGED_FILES" | grep -E '\.(py|js|ts|tsx|css|scss|yaml|yml
 if [ -n "$CODE_CHANGED" ]; then
   NEW_LOG=$(git diff --cached --name-only --diff-filter=A | grep -E '^logs/[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{6}_.+\.md$' || true)
   if [ -z "$NEW_LOG" ]; then
-    echo "❌ Falta log de checkpoint en logs/YYYY-MM-DD_HHMMSS_X.Y.Z_keyword.md (añade uno nuevo)"
+    echo "❌ Missing checkpoint log in logs/YYYY-MM-DD_HHMMSS_X.Y.Z_keyword.md (add a new one)"
     exit 1
   fi
 fi
@@ -107,5 +107,4 @@ COMMIT_MESSAGE="$COMMIT_TYPE: $CHANGED_FILES files, $INSERTIONS insertions(+), $
 
 # 9. Commit to main
 git commit -m "$COMMIT_MESSAGE"
-echo "✅ Commit orgánico a MAIN: $COMMIT_MESSAGE"
-
+echo "✅ Organic commit to MAIN: $COMMIT_MESSAGE"
