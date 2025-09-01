@@ -1,0 +1,4 @@
+# ATLAS CORE - BLACK BOX
+# This directory contains ATLAS internal implementation
+# NEVER document, expose, or commit implementation details
+# Only public interfaces in /atlas/public/ are accessible
