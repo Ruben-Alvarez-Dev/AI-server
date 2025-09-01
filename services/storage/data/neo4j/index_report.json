@@ -1,0 +1,264 @@
+{
+  "timestamp": 1756738304.9557161,
+  "existing_indexes": [
+    {
+      "name": "concept_category_index",
+      "type": "RANGE",
+      "entity_type": "NODE",
+      "labels_or_types": [
+        "Concept"
+      ],
+      "properties": [
+        "category"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "concept_embedding_vector",
+      "type": "VECTOR",
+      "entity_type": "NODE",
+      "labels_or_types": [
+        "Concept"
+      ],
+      "properties": [
+        "embedding"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "concept_id_unique",
+      "type": "RANGE",
+      "entity_type": "NODE",
+      "labels_or_types": [
+        "Concept"
+      ],
+      "properties": [
+        "id"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "document_content_fulltext",
+      "type": "FULLTEXT",
+      "entity_type": "NODE",
+      "labels_or_types": [
+        "Document"
+      ],
+      "properties": [
+        "title",
+        "content",
+        "summary"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "document_id_unique",
+      "type": "RANGE",
+      "entity_type": "NODE",
+      "labels_or_types": [
+        "Document"
+      ],
+      "properties": [
+        "id"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "document_timestamp_index",
+      "type": "RANGE",
+      "entity_type": "NODE",
+      "labels_or_types": [
+        "Document"
+      ],
+      "properties": [
+        "created_at"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "entity_id_unique",
+      "type": "RANGE",
+      "entity_type": "NODE",
+      "labels_or_types": [
+        "Entity"
+      ],
+      "properties": [
+        "id"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "entity_name_fulltext",
+      "type": "FULLTEXT",
+      "entity_type": "NODE",
+      "labels_or_types": [
+        "Entity"
+      ],
+      "properties": [
+        "name",
+        "description"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "entity_type_index",
+      "type": "RANGE",
+      "entity_type": "NODE",
+      "labels_or_types": [
+        "Entity"
+      ],
+      "properties": [
+        "type"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "index_343aff4e",
+      "type": "LOOKUP",
+      "entity_type": "NODE",
+      "labels_or_types": null,
+      "properties": null,
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "index_f7700477",
+      "type": "LOOKUP",
+      "entity_type": "RELATIONSHIP",
+      "labels_or_types": null,
+      "properties": null,
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "relationship_strength_index",
+      "type": "RANGE",
+      "entity_type": "RELATIONSHIP",
+      "labels_or_types": [
+        "RELATED"
+      ],
+      "properties": [
+        "strength"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "user_id_unique",
+      "type": "RANGE",
+      "entity_type": "NODE",
+      "labels_or_types": [
+        "User"
+      ],
+      "properties": [
+        "id"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    },
+    {
+      "name": "user_session_index",
+      "type": "RANGE",
+      "entity_type": "NODE",
+      "labels_or_types": [
+        "User"
+      ],
+      "properties": [
+        "session_id"
+      ],
+      "state": "ONLINE",
+      "population_percent": 100.0
+    }
+  ],
+  "core_indexes_status": {
+    "entity_id_index": {
+      "exists": false,
+      "description": "Fast entity ID lookups for graph traversal",
+      "type": "RANGE"
+    },
+    "entity_type_index": {
+      "exists": true,
+      "description": "Entity type filtering for categorized queries",
+      "type": "RANGE"
+    },
+    "entity_name_fulltext": {
+      "exists": true,
+      "description": "Full-text search across entity names and descriptions",
+      "type": "FULLTEXT"
+    },
+    "concept_id_index": {
+      "exists": false,
+      "description": "Fast concept ID lookups for semantic queries",
+      "type": "RANGE"
+    },
+    "concept_category_index": {
+      "exists": true,
+      "description": "Concept category filtering for semantic grouping",
+      "type": "RANGE"
+    },
+    "concept_embedding_vector": {
+      "exists": true,
+      "description": "Vector similarity search for semantic matching",
+      "type": "VECTOR"
+    },
+    "document_id_index": {
+      "exists": false,
+      "description": "Fast document ID lookups for content retrieval",
+      "type": "RANGE"
+    },
+    "document_timestamp_index": {
+      "exists": true,
+      "description": "Temporal queries for document timeline analysis",
+      "type": "RANGE"
+    },
+    "document_content_fulltext": {
+      "exists": true,
+      "description": "Full-text search across document content",
+      "type": "FULLTEXT"
+    },
+    "user_id_index": {
+      "exists": false,
+      "description": "Fast user ID lookups for session management",
+      "type": "RANGE"
+    },
+    "user_session_index": {
+      "exists": true,
+      "description": "Active session tracking and management",
+      "type": "RANGE"
+    }
+  },
+  "performance_analysis": {
+    "total_indexes": 14,
+    "by_type": {
+      "RANGE": 9,
+      "VECTOR": 1,
+      "FULLTEXT": 2,
+      "LOOKUP": 2
+    },
+    "by_state": {
+      "ONLINE": 14
+    },
+    "performance_issues": [],
+    "recommendations": []
+  },
+  "benchmark_results": {
+    "entity_type_lookup_ms": 14.28,
+    "relationship_traversal_ms": 8.17,
+    "complex_query_ms": 26.35,
+    "average_query_ms": 16.27,
+    "performance_rating": "fair"
+  },
+  "recommendations": [
+    "Missing core indexes: entity_id_index, concept_id_index, document_id_index",
+    "Query performance could be improved with index optimization"
+  ]
+}
