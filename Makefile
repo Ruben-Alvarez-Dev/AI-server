@@ -2,6 +2,7 @@
 # Common commands for development and deployment
 
 .PHONY: help install clean test run-memory run-llm run-gui run-all stop download-models
+ .PHONY: deps-compile deps-sync preflight
 
 # Default target
 help:
@@ -39,6 +40,20 @@ install:
 	@echo "Setting up pre-commit hooks..."
 	pre-commit install
 	@echo "Installation complete!"
+
+# Dependencies via pip-tools
+deps-compile:
+	@echo "Compiling requirements.txt from requirements.in (pip-tools)..."
+	pip install pip-tools && pip-compile --generate-hashes -o requirements.txt requirements.in
+
+deps-sync:
+	@echo "Syncing environment to requirements.txt (pip-tools)..."
+	pip install pip-tools && pip-sync requirements.txt
+
+# System preflight
+preflight:
+	@echo "Running system preflight checks..."
+	bash tools/system/preflight.sh
 
 # Model download
 download-models:
