@@ -70,6 +70,9 @@ Marcar como completado en el plan (`/plan/implementation-index.md`) **solo si pa
 ### 9. 💾 Commit directo a MAIN
 Solo entonces hacer el commit siguiendo convenciones **directamente a rama main**
 
+### 10. ⬆️ Push inmediato a MAIN
+Realizar `git push origin main` inmediatamente tras el commit si todas las rules están en ✅. Esto forma parte del workflow inmutable.
+
 **⚠️ CRÍTICO**: Este workflow es **INMUTABLE** y se ejecuta para **CADA** checkpoint.
 
 ## 🚨 DIRECTORY RULES - CRÍTICAS E INMUTABLES
@@ -248,6 +251,10 @@ COMMIT_MESSAGE="$COMMIT_TYPE: $CHANGED_FILES files, $INSERTIONS insertions(+), $
 # 8. Commit directo a main
 git commit -m "$COMMIT_MESSAGE"
 echo "✅ Commit orgánico a MAIN: $COMMIT_MESSAGE"
+
+# 9. Push inmediato a main
+git push origin main
+echo "✅ Push a MAIN completado"
 echo "📊 Líneas cambiadas: $CHANGED_LINES"
 ```
 

@@ -108,3 +108,8 @@ COMMIT_MESSAGE="$COMMIT_TYPE: $CHANGED_FILES files, $INSERTIONS insertions(+), $
 # 9. Commit to main
 git commit -m "$COMMIT_MESSAGE"
 echo "✅ Organic commit to MAIN: $COMMIT_MESSAGE"
+
+# 10. Push to origin/main
+echo "⏫ Pushing to origin/main..."
+git push origin main
+echo "✅ Push completed"

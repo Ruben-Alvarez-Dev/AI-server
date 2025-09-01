@@ -128,7 +128,7 @@ Please follow the project rules in `logs/plan/`:
 #### Git Workflow & Hooks
 - Single branch: `main` only. Direct commits, no PRs.
 - Enable repo hooks: `bash tools/git/setup-hooks.sh`.
-- Organic commits: use `scripts/organic-commit.sh` (auto-validates and commits with a smart message). Requires author: `Ruben-Alvarez-Dev <ruben.alvarez.dev@gmail.com>`.
+- Organic commits: use `scripts/organic-commit.sh` (auto-validates, commits, and pushes). Requires author: `Ruben-Alvarez-Dev <ruben.alvarez.dev@gmail.com>`.
 - Commit format: `<type>: <description>` where type ∈ `feat|fix|refactor|docs|test|chore|feat(atlas)|docs(log)|docs(plan)`.
 - Directory rules: keep `logs/` and `plan/` tracked; always ignore `OLD_VERSION/`.
 - ATLAS Black Box: only public interfaces, `atlas_` prefix, never document internals.

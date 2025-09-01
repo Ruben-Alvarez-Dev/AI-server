@@ -53,7 +53,7 @@
 
 ### 🌿 Git Strategy: SOLO MAIN
 - **UNA rama únicamente**: `main` - No develop, feature, hotfix, etc.
-- **Commits directos a main**: Todo el desarrollo va directo
+- **Commits y push directos a main**: Todo el desarrollo va directo
 - **Pre-commit validation**: Validación exhaustiva antes de commit
 - **Organic commits**: Solo cuando hay contenido significativo
 - **Autoría única**: Ruben-Alvarez-Dev exclusivamente
