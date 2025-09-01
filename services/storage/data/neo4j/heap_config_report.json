@@ -1,0 +1,50 @@
+{
+  "timestamp": 1756592640.0,
+  "system_info": {
+    "total_ram_gb": 128.0,
+    "cpu_count": 20,
+    "platform": "arm64"
+  },
+  "memory_allocation": {
+    "heap_gb": 19,
+    "page_cache_gb": 12,
+    "total_neo4j_gb": 31
+  },
+  "current_config": {
+    "server.memory.heap.initial_size": "19g",
+    "server.memory.heap.max_size": "19g",
+    "server.memory.pagecache.size": "13g"
+  },
+  "validation": {
+    "system_memory": {
+      "total_gb": 128.0,
+      "available_gb": 105.77,
+      "used_gb": 21.22,
+      "usage_percentage": 16.6
+    },
+    "neo4j_allocation": {
+      "heap_gb": 19,
+      "page_cache_gb": 12,
+      "total_gb": 31,
+      "percentage_of_total": 24.2
+    },
+    "recommendations": []
+  },
+  "process_status": {
+    "running": false,
+    "processes": [],
+    "total_memory_gb": 0
+  },
+  "jvm_optimizations": {
+    "server.jvm.additional": [
+      "-XX:+UseG1GC",
+      "-XX:MaxGCPauseMillis=200",
+      "-XX:+UnlockExperimentalVMOptions",
+      "-XX:+UseTransparentHugePages",
+      "-XX:+AggressiveOpts",
+      "-XX:NewRatio=2",
+      "-Dfile.encoding=UTF-8",
+      "-Djava.awt.headless=true"
+    ]
+  }
+}
