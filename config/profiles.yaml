@@ -1,0 +1,60 @@
+# LLM Profile configurations
+# Four distinct profiles for different use cases
+
+profiles:
+  # Development profile - Fast, lightweight models
+  DEV:
+    name: "Development"
+    description: "Lightweight models for rapid development and testing"
+    models:
+      primary: "codellama-7b-instruct.Q4_K_M.gguf"
+      fallback: "tinyllama-1.1b-chat.Q4_K_M.gguf"
+    context_size: 4096
+    gpu_layers: 20
+    temperature: 0.7
+    max_tokens: 2048
+    
+  # Productivity profile - Balanced performance
+  PRODUCTIVITY:
+    name: "Productivity"
+    description: "Balanced models for daily productivity tasks"
+    models:
+      primary: "llama2-13b-chat.Q5_K_M.gguf"
+      fallback: "mistral-7b-instruct.Q4_K_M.gguf"
+    context_size: 8192
+    gpu_layers: 35
+    temperature: 0.5
+    max_tokens: 4096
+    
+  # Academic profile - High accuracy, research-focused
+  ACADEMIC:
+    name: "Academic"
+    description: "High-quality models for research and academic work"
+    models:
+      primary: "mixtral-8x7b-instruct.Q5_K_M.gguf"
+      fallback: "llama2-70b-chat.Q4_K_M.gguf"
+    context_size: 16384
+    gpu_layers: 50
+    temperature: 0.3
+    max_tokens: 8192
+    
+  # General profile - Versatile, general-purpose
+  GENERAL:
+    name: "General"
+    description: "Versatile models for general-purpose use"
+    models:
+      primary: "llama2-7b-chat.Q5_K_M.gguf"
+      fallback: "phi-2.Q4_K_M.gguf"
+    context_size: 4096
+    gpu_layers: 25
+    temperature: 0.6
+    max_tokens: 2048
+
+# Profile switching configuration
+switching:
+  default_profile: "GENERAL"
+  auto_switch: false
+  switch_criteria:
+    cpu_threshold: 80
+    memory_threshold: 85
+    latency_threshold_ms: 5000

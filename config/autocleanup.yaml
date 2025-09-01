@@ -1,0 +1,65 @@
+# Auto-cleanup configuration
+# Memory management and data retention policies
+
+autocleanup:
+  # Time-to-live per hierarchy level (hours)
+  ttl:
+    task: 1          # Individual tasks
+    subtask: 2       # Subtasks
+    conversation: 6  # Conversation threads
+    session: 24      # User sessions
+    project: 168     # Project data (1 week)
+    archive: 720     # Archived data (30 days)
+    
+  # IPC (Importance, Priority, Context) thresholds
+  ipc_thresholds:
+    delete_threshold: 0.3    # Below this, eligible for deletion
+    compress_threshold: 0.5  # Below this, compress
+    archive_threshold: 0.7   # Below this, move to archive
+    keep_threshold: 0.9      # Above this, always keep
+    
+  # Compression settings
+  compression:
+    enabled: true
+    algorithm: "zstd"
+    level: 3  # 1-22, higher = better compression
+    min_size_kb: 100  # Don't compress files smaller than this
+    
+  # Cleanup schedules (cron format)
+  schedules:
+    immediate: "*/15 * * * *"  # Every 15 minutes
+    hourly: "0 * * * *"        # Every hour
+    daily: "0 3 * * *"         # 3 AM daily
+    weekly: "0 4 * * 0"        # 4 AM Sunday
+    
+  # Emergency cleanup triggers
+  emergency:
+    disk_usage_percent: 90
+    memory_usage_percent: 95
+    aggressive_mode: true  # Delete more aggressively in emergency
+    
+  # Data preservation rules
+  preservation:
+    always_keep:
+      - "starred"
+      - "pinned"
+      - "in_progress"
+    never_delete:
+      - "system"
+      - "config"
+      - "atlas_core"  # ATLAS black box data
+      
+  # Cleanup procedures
+  procedures:
+    soft_cleanup:
+      - compress_old_logs
+      - archive_completed_tasks
+      - remove_temp_files
+    hard_cleanup:
+      - delete_expired_data
+      - purge_cache
+      - vacuum_databases
+    emergency_cleanup:
+      - kill_inactive_sessions
+      - drop_all_caches
+      - delete_all_temp

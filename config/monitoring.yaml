@@ -1,0 +1,132 @@
+# Monitoring configuration
+# Prometheus, alerting, and observability settings
+
+monitoring:
+  # Prometheus configuration
+  prometheus:
+    enabled: true
+    scrape_interval: 15s
+    evaluation_interval: 15s
+    retention_days: 30
+    
+    scrape_configs:
+      - job_name: "memory-server"
+        port: 9001
+        path: "/metrics"
+        
+      - job_name: "llm-server"
+        port: 9002
+        path: "/metrics"
+        
+      - job_name: "gui-server"
+        port: 9003
+        path: "/metrics"
+        
+      - job_name: "atlas-interface"  # ATLAS public metrics only
+        port: 9004
+        path: "/atlas/metrics"
+        
+  # Metrics to collect
+  metrics:
+    system:
+      - cpu_usage_percent
+      - memory_usage_percent
+      - disk_usage_percent
+      - network_io_bytes
+      
+    application:
+      - request_count
+      - request_duration_ms
+      - error_count
+      - active_connections
+      
+    llm:
+      - tokens_per_second
+      - context_usage_percent
+      - model_load_time_ms
+      - inference_time_ms
+      
+    memory:
+      - embedding_time_ms
+      - search_latency_ms
+      - cache_hit_rate
+      - storage_size_bytes
+      
+  # Alert rules
+  alerts:
+    - name: "HighCPUUsage"
+      expr: "cpu_usage_percent > 90"
+      for: 5m
+      severity: "warning"
+      
+    - name: "HighMemoryUsage"
+      expr: "memory_usage_percent > 85"
+      for: 5m
+      severity: "warning"
+      
+    - name: "DiskSpaceLow"
+      expr: "disk_usage_percent > 80"
+      for: 10m
+      severity: "critical"
+      
+    - name: "ServiceDown"
+      expr: "up == 0"
+      for: 1m
+      severity: "critical"
+      
+    - name: "HighErrorRate"
+      expr: "rate(error_count[5m]) > 10"
+      for: 5m
+      severity: "warning"
+      
+  # Logging configuration
+  logging:
+    # Log levels per component
+    levels:
+      default: "INFO"
+      memory_server: "INFO"
+      llm_server: "INFO"
+      gui_server: "INFO"
+      atlas_interface: "WARNING"  # ATLAS minimal logging
+      system: "WARNING"
+      
+    # Output destinations
+    outputs:
+      - type: "console"
+        format: "json"
+        
+      - type: "file"
+        path: "./logs/{component}/{date}.log"
+        rotation: "daily"
+        retention_days: 30
+        
+      - type: "syslog"
+        host: "localhost"
+        port: 514
+        protocol: "udp"
+        
+  # Health checks
+  health_checks:
+    interval: 30s
+    timeout: 5s
+    
+    endpoints:
+      memory_server: "http://localhost:8001/health"
+      llm_server: "http://localhost:8002/health"
+      gui_server: "http://localhost:8003/health"
+      atlas_interface: "http://localhost:8004/atlas/health"  # ATLAS public endpoint
+      
+    thresholds:
+      healthy_response_time_ms: 1000
+      degraded_response_time_ms: 3000
+      
+  # Dashboards
+  dashboards:
+    grafana:
+      enabled: true
+      port: 3000
+      provisioning:
+        - system_overview
+        - llm_performance
+        - memory_analytics
+        - error_tracking

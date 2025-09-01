@@ -1,0 +1,156 @@
+# API Endpoints configuration
+# Dynamic endpoint definitions for all servers
+
+endpoints:
+  # API versioning
+  version: "v1"
+  base_path: "/api"
+  
+  # Memory Server endpoints
+  memory_server:
+    base: "http://localhost:8001"
+    endpoints:
+      - path: "/embed"
+        method: "POST"
+        handler: "embeddings.create"
+        middleware: ["auth", "rate_limit"]
+        
+      - path: "/search"
+        method: "POST"
+        handler: "search.query"
+        middleware: ["auth", "cache"]
+        
+      - path: "/store"
+        method: "POST"
+        handler: "storage.save"
+        middleware: ["auth", "validate"]
+        
+      - path: "/retrieve/{id}"
+        method: "GET"
+        handler: "storage.get"
+        middleware: ["auth", "cache"]
+        
+      - path: "/delete/{id}"
+        method: "DELETE"
+        handler: "storage.delete"
+        middleware: ["auth", "audit"]
+        
+  # LLM Server endpoints
+  llm_server:
+    base: "http://localhost:8002"
+    endpoints:
+      - path: "/generate"
+        method: "POST"
+        handler: "llm.generate"
+        middleware: ["auth", "rate_limit", "queue"]
+        
+      - path: "/chat"
+        method: "POST"
+        handler: "llm.chat"
+        middleware: ["auth", "session"]
+        
+      - path: "/models"
+        method: "GET"
+        handler: "models.list"
+        middleware: ["cache"]
+        
+      - path: "/models/{model_id}/load"
+        method: "POST"
+        handler: "models.load"
+        middleware: ["auth", "admin"]
+        
+      - path: "/models/{model_id}/unload"
+        method: "POST"
+        handler: "models.unload"
+        middleware: ["auth", "admin"]
+        
+  # GUI Server endpoints
+  gui_server:
+    base: "http://localhost:8003"
+    endpoints:
+      - path: "/"
+        method: "GET"
+        handler: "dashboard.index"
+        middleware: ["session"]
+        
+      - path: "/ws"
+        method: "WEBSOCKET"
+        handler: "websocket.connect"
+        middleware: ["auth"]
+        
+      - path: "/api/widgets"
+        method: "GET"
+        handler: "widgets.list"
+        middleware: ["auth", "cache"]
+        
+      - path: "/api/settings"
+        method: ["GET", "POST"]
+        handler: "settings.manage"
+        middleware: ["auth"]
+        
+  # ATLAS Interface endpoints (PUBLIC ONLY)
+  atlas_interface:
+    base: "http://localhost:8004"
+    endpoints:
+      - path: "/atlas/v1/process"
+        method: "POST"
+        handler: "atlas_process"
+        middleware: ["auth", "rate_limit"]
+        description: "ATLAS public processing interface"
+        
+      - path: "/atlas/v1/enhance"
+        method: "POST"
+        handler: "atlas_enhance"
+        middleware: ["auth", "rate_limit"]
+        description: "ATLAS public enhancement interface"
+        
+      - path: "/atlas/v1/status"
+        method: "GET"
+        handler: "atlas_status"
+        middleware: ["cache"]
+        description: "ATLAS public status endpoint"
+        
+      - path: "/atlas/health"
+        method: "GET"
+        handler: "atlas_health"
+        middleware: []
+        description: "ATLAS public health check"
+        
+  # Shared endpoints
+  shared:
+    - path: "/health"
+      method: "GET"
+      handler: "health.check"
+      middleware: []
+      
+    - path: "/metrics"
+      method: "GET"
+      handler: "metrics.export"
+      middleware: []
+      
+    - path: "/version"
+      method: "GET"
+      handler: "version.info"
+      middleware: ["cache"]
+      
+  # Middleware configurations
+  middleware:
+    auth:
+      type: "jwt"
+      header: "Authorization"
+      prefix: "Bearer"
+      
+    rate_limit:
+      requests_per_minute: 60
+      burst: 10
+      
+    cache:
+      ttl_seconds: 300
+      
+    validate:
+      strict: true
+      max_body_size_mb: 10
+      
+    audit:
+      log_level: "INFO"
+      include_body: false

@@ -1,0 +1,114 @@
+# GUI Server configuration
+# Dashboard, widgets, and user interface settings
+
+gui:
+  # Server settings
+  server:
+    port: 8003
+    host: "0.0.0.0"
+    base_path: "/"
+    static_dir: "./static"
+    template_dir: "./templates"
+    
+  # Dashboard configuration
+  dashboard:
+    default_layout: "grid"
+    refresh_rate_seconds: 5
+    max_widgets: 12
+    
+    layouts:
+      grid:
+        columns: 4
+        rows: 3
+        gap_px: 10
+        
+      list:
+        items_per_page: 20
+        infinite_scroll: true
+        
+      cards:
+        cards_per_row: 3
+        card_height_px: 300
+        
+  # Widget configurations
+  widgets:
+    - id: "system_health"
+      type: "gauge"
+      title: "System Health"
+      refresh_rate: 5
+      position: { row: 1, col: 1, width: 1, height: 1 }
+      
+    - id: "active_models"
+      type: "list"
+      title: "Active Models"
+      refresh_rate: 10
+      position: { row: 1, col: 2, width: 2, height: 1 }
+      
+    - id: "chat_interface"
+      type: "chat"
+      title: "AI Chat"
+      refresh_rate: 1
+      position: { row: 2, col: 1, width: 3, height: 2 }
+      
+    - id: "performance_chart"
+      type: "chart"
+      title: "Performance Metrics"
+      refresh_rate: 5
+      position: { row: 1, col: 4, width: 1, height: 1 }
+      
+    - id: "atlas_status"
+      type: "status"
+      title: "ATLAS Interface"  # ATLAS public status only
+      refresh_rate: 10
+      position: { row: 2, col: 4, width: 1, height: 1 }
+      
+  # WebSocket configuration
+  websocket:
+    enabled: true
+    port: 8080
+    ping_interval: 30
+    pong_timeout: 10
+    max_connections: 1000
+    message_size_limit_kb: 1024
+    
+  # Cache configuration
+  cache:
+    enabled: true
+    type: "redis"
+    ttl_seconds: 300
+    max_entries: 10000
+    
+  # Session management
+  session:
+    secret_key: "change-this-in-production"
+    timeout_minutes: 60
+    cookie_name: "ai_server_session"
+    secure: false  # Set to true in production with HTTPS
+    
+  # Theme settings
+  themes:
+    default: "dark"
+    available:
+      - "dark"
+      - "light"
+      - "auto"
+    
+    dark:
+      primary_color: "#1e40af"
+      secondary_color: "#3730a3"
+      background_color: "#111827"
+      text_color: "#f9fafb"
+      
+    light:
+      primary_color: "#3b82f6"
+      secondary_color: "#6366f1"
+      background_color: "#ffffff"
+      text_color: "#111827"
+      
+  # User preferences defaults
+  preferences:
+    language: "en"
+    timezone: "UTC"
+    notifications: true
+    auto_refresh: true
+    compact_mode: false

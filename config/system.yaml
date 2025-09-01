@@ -1,0 +1,42 @@
+# System-wide configuration
+# Global settings for AI-server infrastructure
+
+system:
+  # Resource limits for minimal hardware compatibility
+  resources:
+    max_memory_gb: 8
+    max_cpu_cores: 4
+    disk_warning_gb: 10
+    disk_critical_gb: 5
+  
+  # File paths configuration
+  paths:
+    models_dir: "./models"
+    logs_dir: "./logs"
+    state_dir: "./var/state"
+    run_dir: "./var/run"
+    temp_dir: "/tmp/ai-server"
+  
+  # Network configuration
+  network:
+    memory_server_port: 8001
+    llm_server_port: 8002
+    gui_server_port: 8003
+    atlas_server_port: 8004
+    websocket_port: 8080
+    bind_address: "0.0.0.0"
+    
+  # Global timeouts (seconds)
+  timeouts:
+    request_timeout: 30
+    connection_timeout: 10
+    idle_timeout: 300
+    shutdown_grace: 15
+    
+  # Logging configuration
+  logging:
+    level: "INFO"
+    format: "json"
+    rotation: "daily"
+    max_files: 30
+    max_size_mb: 100

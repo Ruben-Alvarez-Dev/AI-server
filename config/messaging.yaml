@@ -1,0 +1,93 @@
+# Messaging configuration
+# Apache Pulsar, NATS, and Benthos settings
+
+messaging:
+  # Apache Pulsar configuration
+  pulsar:
+    enabled: true
+    broker_url: "pulsar://localhost:6650"
+    admin_url: "http://localhost:8080"
+    
+    topics:
+      memory_requests: "persistent://ai-server/memory/requests"
+      memory_responses: "persistent://ai-server/memory/responses"
+      llm_requests: "persistent://ai-server/llm/requests"
+      llm_responses: "persistent://ai-server/llm/responses"
+      system_events: "persistent://ai-server/system/events"
+      atlas_interface: "persistent://ai-server/atlas/public"  # ATLAS public only
+      
+    retention:
+      default_hours: 24
+      max_storage_gb: 10
+      
+    rate_limits:
+      max_messages_per_second: 1000
+      max_bytes_per_second: 10485760  # 10MB/s
+      
+  # NATS configuration
+  nats:
+    enabled: true
+    server_url: "nats://localhost:4222"
+    
+    subjects:
+      realtime_chat: "chat.>"
+      system_health: "health.>"
+      cache_invalidation: "cache.invalidate"
+      atlas_events: "atlas.events.>"  # ATLAS public events only
+      
+    jetstream:
+      enabled: true
+      storage: "file"
+      max_memory_gb: 1
+      max_file_gb: 10
+      
+  # Benthos configuration
+  benthos:
+    enabled: true
+    api_port: 4195
+    
+    pipelines:
+      - name: "message_enrichment"
+        input: "pulsar"
+        processors:
+          - json_parse
+          - metadata_enrich
+          - timestamp_add
+        output: "nats"
+        
+      - name: "log_aggregation"
+        input: "file"
+        processors:
+          - grok_parse
+          - filter_levels
+          - batch
+        output: "elasticsearch"
+        
+      - name: "atlas_bridge"
+        input: "nats"
+        processors:
+          - atlas_validate  # Validate ATLAS public interface only
+          - transform
+        output: "pulsar"
+        
+    resources:
+      max_memory_mb: 512
+      max_goroutines: 100
+      
+  # Message schemas
+  schemas:
+    version: "1.0.0"
+    format: "json"
+    validation: "strict"
+    
+  # Retry policies
+  retry:
+    max_attempts: 3
+    backoff_ms: 1000
+    max_backoff_ms: 30000
+    
+  # Dead letter queues
+  dlq:
+    enabled: true
+    max_redeliveries: 5
+    ttl_hours: 168  # 1 week
