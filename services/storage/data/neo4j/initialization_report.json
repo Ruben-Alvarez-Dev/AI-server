@@ -1,0 +1,12 @@
+{
+  "connectivity": true,
+  "constraints": 4,
+  "indexes": 10,
+  "nodes": 3,
+  "relationships": 6,
+  "seed_data": true,
+  "performance_test": {
+    "simple_query_ms": 1.52,
+    "total_nodes": 3
+  }
+}
