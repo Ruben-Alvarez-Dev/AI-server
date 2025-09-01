@@ -3,19 +3,19 @@
 
 ## 4.1 DuckDB Setup (7 tasks)
 
-- [ ] **4.1.1 Install DuckDB 0.10.x Python package**  
+- [x] **4.1.1 Install DuckDB 0.10.x Python package**  
   Install DuckDB using pip install duckdb==0.10.0 for embedded analytical database capabilities. DuckDB provides excellent OLAP performance with minimal resource usage. It's perfect for time-series data and analytical queries.
 
-- [ ] **4.1.2 Install DuckDB CLI tools**  
+- [x] **4.1.2 Install DuckDB CLI tools**  
   Download and install DuckDB CLI for interactive querying and database management tasks. The CLI is useful for debugging and manual operations. Add to PATH for system-wide availability.
 
-- [ ] **4.1.3 Create data directory structure**  
+- [x] **4.1.3 Create data directory structure**  
   Create /services/storage/data/duckdb/ with subdirectories for different data categories (hierarchy, metrics, logs). Organize by date partitions for efficient querying and cleanup. Include README explaining the structure.
 
-- [ ] **4.1.4 Configure memory limits (20% available)**  
+- [x] **4.1.4 Configure memory limits (20% available)**  
   Set DuckDB memory limit to 20% of detected available RAM using SET memory_limit='25GB' in initialization. This prevents DuckDB from consuming memory needed for models. Configure spill-to-disk behavior for large queries.
 
-- [ ] **4.1.5 Setup partitioning templates**  
+- [x] **4.1.5 Setup partitioning templates**  
   Create partitioning schemes for time-series data using DuckDB's native partitioning by day/week/month. This enables efficient data pruning and query performance. Document partitioning strategy and maintenance procedures.
 
 - [ ] **4.1.6 Create initial schemas**  
@@ -135,6 +135,6 @@
 
 ## Progress Summary
 - **Total Tasks**: 39
-- **Completed**: 0/39
+- **Completed**: 5/39
 - **Current Section**: 4.1 DuckDB Setup
-- **Next Checkpoint**: 4.1.1
+- **Next Checkpoint**: 4.1.6
