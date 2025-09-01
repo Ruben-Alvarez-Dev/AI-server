@@ -1,0 +1,234 @@
+{
+  "test_results": {
+    "timestamp": 1756738489.106328,
+    "total_queries": 13,
+    "successful_queries": 12,
+    "failed_queries": 1,
+    "validation_passed": 11,
+    "validation_failed": 2,
+    "query_results": {
+      "node_creation": {
+        "query_name": "node_creation",
+        "description": "Basic node creation with properties",
+        "status": "ERROR",
+        "validation_passed": false,
+        "performance": {
+          "avg_time_ms": 0,
+          "min_time_ms": 0,
+          "max_time_ms": 0,
+          "std_dev_ms": 0
+        },
+        "results_count": 0,
+        "expected_results": 1,
+        "error": "{code: Neo.ClientError.Statement.TypeError} {message: Property values can only be of primitive types or arrays thereof. Encountered: Map{category -> String(\"test\"), score -> Double(8,500000e-01)}.}"
+      },
+      "node_lookup_by_id": {
+        "query_name": "node_lookup_by_id",
+        "description": "Fast node lookup by indexed ID",
+        "status": "SUCCESS",
+        "validation_passed": true,
+        "performance": {
+          "avg_time_ms": 8.86,
+          "min_time_ms": 1.53,
+          "max_time_ms": 23.28,
+          "std_dev_ms": 12.49
+        },
+        "results_count": 1,
+        "expected_results": 1
+      },
+      "node_filtering_by_type": {
+        "query_name": "node_filtering_by_type",
+        "description": "Node filtering with indexed type field",
+        "status": "SUCCESS",
+        "validation_passed": true,
+        "performance": {
+          "avg_time_ms": 9.13,
+          "min_time_ms": 1.99,
+          "max_time_ms": 23.33,
+          "std_dev_ms": 12.29
+        },
+        "results_count": 1,
+        "expected_results": ">= 1"
+      },
+      "relationship_creation": {
+        "query_name": "relationship_creation",
+        "description": "Relationship creation between existing nodes",
+        "status": "SUCCESS",
+        "validation_passed": false,
+        "performance": {
+          "avg_time_ms": 11.01,
+          "min_time_ms": 1.64,
+          "max_time_ms": 29.52,
+          "std_dev_ms": 16.02
+        },
+        "results_count": 0,
+        "expected_results": 1
+      },
+      "relationship_traversal": {
+        "query_name": "relationship_traversal",
+        "description": "Basic relationship traversal with ordering",
+        "status": "SUCCESS",
+        "validation_passed": true,
+        "performance": {
+          "avg_time_ms": 9.12,
+          "min_time_ms": 1.36,
+          "max_time_ms": 24.56,
+          "std_dev_ms": 13.37
+        },
+        "results_count": 1,
+        "expected_results": ">= 1"
+      },
+      "multi_hop_traversal": {
+        "query_name": "multi_hop_traversal",
+        "description": "Multi-hop graph traversal with path analysis",
+        "status": "SUCCESS",
+        "validation_passed": true,
+        "performance": {
+          "avg_time_ms": 24.27,
+          "min_time_ms": 2.24,
+          "max_time_ms": 68.22,
+          "std_dev_ms": 38.07
+        },
+        "results_count": 3,
+        "expected_results": ">= 1"
+      },
+      "weighted_traversal": {
+        "query_name": "weighted_traversal",
+        "description": "Weighted relationship traversal with filtering",
+        "status": "SUCCESS",
+        "validation_passed": true,
+        "performance": {
+          "avg_time_ms": 9.09,
+          "min_time_ms": 1.59,
+          "max_time_ms": 23.99,
+          "std_dev_ms": 12.9
+        },
+        "results_count": 3,
+        "expected_results": ">= 0"
+      },
+      "node_statistics": {
+        "query_name": "node_statistics",
+        "description": "Node count statistics by label",
+        "status": "SUCCESS",
+        "validation_passed": true,
+        "performance": {
+          "avg_time_ms": 7.71,
+          "min_time_ms": 1.71,
+          "max_time_ms": 19.56,
+          "std_dev_ms": 10.26
+        },
+        "results_count": 3,
+        "expected_results": ">= 1"
+      },
+      "relationship_statistics": {
+        "query_name": "relationship_statistics",
+        "description": "Relationship statistics with aggregations",
+        "status": "SUCCESS",
+        "validation_passed": true,
+        "performance": {
+          "avg_time_ms": 9.17,
+          "min_time_ms": 1.78,
+          "max_time_ms": 23.83,
+          "std_dev_ms": 12.7
+        },
+        "results_count": 3,
+        "expected_results": ">= 1"
+      },
+      "fulltext_entity_search": {
+        "query_name": "fulltext_entity_search",
+        "description": "Full-text search across entity names and descriptions",
+        "status": "SUCCESS",
+        "validation_passed": true,
+        "performance": {
+          "avg_time_ms": 16.62,
+          "min_time_ms": 2.57,
+          "max_time_ms": 44.62,
+          "std_dev_ms": 24.25
+        },
+        "results_count": 1,
+        "expected_results": ">= 0"
+      },
+      "centrality_analysis": {
+        "query_name": "centrality_analysis",
+        "description": "Simple degree centrality analysis",
+        "status": "SUCCESS",
+        "validation_passed": true,
+        "performance": {
+          "avg_time_ms": 14.86,
+          "min_time_ms": 1.93,
+          "max_time_ms": 40.26,
+          "std_dev_ms": 22.0
+        },
+        "results_count": 3,
+        "expected_results": ">= 1"
+      },
+      "temporal_analysis": {
+        "query_name": "temporal_analysis",
+        "description": "Temporal analysis of node creation patterns",
+        "status": "SUCCESS",
+        "validation_passed": true,
+        "performance": {
+          "avg_time_ms": 11.19,
+          "min_time_ms": 1.84,
+          "max_time_ms": 29.29,
+          "std_dev_ms": 15.68
+        },
+        "results_count": 3,
+        "expected_results": ">= 0"
+      },
+      "complex_join_query": {
+        "query_name": "complex_join_query",
+        "description": "Complex join query with optional path matching",
+        "status": "SUCCESS",
+        "validation_passed": true,
+        "performance": {
+          "avg_time_ms": 29.8,
+          "min_time_ms": 3.43,
+          "max_time_ms": 82.08,
+          "std_dev_ms": 45.28
+        },
+        "results_count": 12,
+        "expected_results": ">= 0"
+      }
+    },
+    "performance_summary": {
+      "fastest_query": {
+        "name": "node_statistics",
+        "time_ms": 7.71
+      },
+      "slowest_query": {
+        "name": "complex_join_query",
+        "time_ms": 29.8
+      },
+      "average_query_time_ms": 13.4
+    }
+  },
+  "performance_report": {
+    "overall_performance": "good",
+    "success_rate": 92.3,
+    "validation_rate": 84.6,
+    "performance_analysis": {
+      "basic": {
+        "avg_time_ms": 9.0,
+        "query_count": 2
+      },
+      "relationship": {
+        "avg_time_ms": 10.06,
+        "query_count": 2
+      },
+      "complex": {
+        "avg_time_ms": 21.05,
+        "query_count": 3
+      }
+    },
+    "recommendations": [
+      "Some queries failed - investigate error causes",
+      "Some result validations failed - review expected results"
+    ]
+  },
+  "cleanup_result": {
+    "status": "SUCCESS",
+    "cleaned_items": 2,
+    "errors": []
+  }
+}
