@@ -1,0 +1,37 @@
+input:
+  pulsar:
+    url: pulsar://localhost:6650
+    topics: 
+      - persistent://memory-server/rag/events
+    subscription_name: duckdb-ingestion
+    subscription_type: shared
+
+pipeline:
+  processors:
+    - mapping: |
+        root.timestamp = now()
+        root.message_id = uuid_v4()
+        root.data = this
+
+output:
+  sql_raw:
+    driver: duckdb
+    dsn: /services/storage/data/duckdb/analytics.db
+    query: |
+      INSERT INTO events (timestamp, message_id, topic, payload) 
+      VALUES (?, ?, ?, ?)
+    args_mapping: |
+      root = [
+        this.timestamp,
+        this.message_id,
+        meta("pulsar_topic"),
+        this.data
+      ]
+
+metrics:
+  prometheus:
+    prefix: benthos_pulsar_duckdb
+
+logger:
+  level: INFO
+  format: json

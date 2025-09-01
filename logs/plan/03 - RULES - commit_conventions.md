@@ -165,6 +165,8 @@ update                     # No context
 WIP                        # Work in progress
 cambios en el código       # Spanish language
 feat(atlas): internal algo # ATLAS internal exposure
+Co-Authored-By: Claude     # NEVER include Claude references
+🤖 Generated with Claude   # NEVER include AI generation notes
 ```
 
 ## 🔧 Script de Commit Orgánico
@@ -266,6 +268,8 @@ echo "📊 Líneas cambiadas: $CHANGED_LINES"
 - ❌ **Archivos OLD_VERSION** jamás
 - ❌ **ATLAS internals** documentation
 - ❌ **Commits vacíos** o triviales
+- ❌ **Referencias a Claude** en commits (Co-Authored-By, Generated with, etc.)
+- ❌ **Notas de AI generation** de cualquier tipo
 
 ## 📊 Validaciones Pre-Commit
 

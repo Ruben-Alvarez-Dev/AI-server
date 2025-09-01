@@ -1,0 +1,37 @@
+input:
+  pulsar:
+    url: pulsar://localhost:6650
+    topics:
+      - persistent://memory-server/rag/raw
+    subscription_name: enrichment-processor
+    subscription_type: shared
+
+pipeline:
+  processors:
+    - branch:
+        request_map: |
+          root.lookup_key = this.entity_id
+        processors:
+          - http:
+              url: http://localhost:8001/api/memory/entities/${! json("lookup_key") }
+              verb: GET
+        result_map: |
+          root.entity_metadata = this
+    - mapping: |
+        root.enriched_at = now()
+        root.original_data = this
+        root.metadata = this.entity_metadata
+
+output:
+  pulsar:
+    url: pulsar://localhost:6650
+    topic: persistent://memory-server/rag/enriched
+    max_in_flight: 1000
+
+metrics:
+  prometheus:
+    prefix: benthos_enrichment
+
+logger:
+  level: INFO
+  format: json

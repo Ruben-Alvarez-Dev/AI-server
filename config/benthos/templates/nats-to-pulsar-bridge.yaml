@@ -1,0 +1,29 @@
+input:
+  nats_jetstream:
+    urls:
+      - nats://localhost:4222
+    subject: orchestration.*
+    queue: pulsar-bridge
+    durable: pulsar-bridge-consumer
+
+pipeline:
+  processors:
+    - mapping: |
+        root.source = "nats"
+        root.timestamp = now()
+        root.original_subject = meta("nats_subject")
+        root.payload = this
+
+output:
+  pulsar:
+    url: pulsar://localhost:6650
+    topic: persistent://llm-server/orchestration/events
+    max_in_flight: 1000
+
+metrics:
+  prometheus:
+    prefix: benthos_nats_pulsar
+
+logger:
+  level: INFO
+  format: json
