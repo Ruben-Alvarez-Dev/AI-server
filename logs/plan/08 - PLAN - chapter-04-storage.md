@@ -18,10 +18,10 @@
 - [x] **4.1.5 Setup partitioning templates**  
   Create partitioning schemes for time-series data using DuckDB's native partitioning by day/week/month. This enables efficient data pruning and query performance. Document partitioning strategy and maintenance procedures.
 
-- [ ] **4.1.6 Create initial schemas**  
+- [x] **4.1.6 Create initial schemas**  
   Define schemas for hierarchy levels, metrics, and system events with appropriate data types and constraints. Include indexes for common query patterns. Version schemas for migration support.
 
-- [ ] **4.1.7 Test connection and queries**  
+- [x] **4.1.7 Test connection and queries**  
   Verify Python connection to DuckDB and run test queries to ensure proper setup. Benchmark query performance for expected workloads. Document connection pooling and concurrent access patterns.
 
 ## 4.2 Qdrant Vector Database (8 tasks)
@@ -135,6 +135,6 @@
 
 ## Progress Summary
 - **Total Tasks**: 39
-- **Completed**: 5/39
-- **Current Section**: 4.1 DuckDB Setup
-- **Next Checkpoint**: 4.1.6
+- **Completed**: 7/39
+- **Current Section**: 4.2 Qdrant Vector Database
+- **Next Checkpoint**: 4.2.1
