@@ -1,0 +1,20 @@
+{
+  "version": "0.10.0",
+  "connection": true,
+  "basic_query": true,
+  "table_creation": true,
+  "data_insertion": true,
+  "analytical_query": true,
+  "performance": {
+    "analytical_query_ms": 1.54
+  },
+  "available_extensions": [
+    "icu",
+    "json",
+    "parquet",
+    "tpcds",
+    "tpch"
+  ],
+  "memory_limit": "102.3 GiB",
+  "status": "SUCCESS"
+}
