@@ -162,7 +162,7 @@ type AtlasRequestType = {...};       // ATLAS type
 ## 🚫 Directorio Rules CRÍTICAS
 
 ### ✅ SIEMPRE en GitHub (JAMÁS en .gitignore)
-- **`/logs/`** - Todos los logs incluido `/logs/plan/` para trazabilidad
+- **`/logs/`** - Todos los logs (checkpoints en `/logs/`) para trazabilidad
 - **`/plan/`** - Master checklist e implementación chapters
 - **Razón**: Trazabilidad completa y transparencia del progreso
 

@@ -57,7 +57,7 @@ Validación exhaustiva de:
 - Code quality standards
 
 ### 7. 📝 Log del checkpoint
-**Crear log en `/logs/plan/YYYY-MM-DD_HHMMSS_X.Y.Z_keyword.md`** documentando:
+**Crear log en `/logs/YYYY-MM-DD_HHMMSS_X.Y.Z_keyword.md`** documentando:
 - ¿Qué se hizo?
 - ¿Cómo se hizo?
 - ¿Qué problemas surgieron?
@@ -143,7 +143,7 @@ fi
 - **test**: Tests
 - **chore**: Maintenance tasks
 - **feat(atlas)**: ATLAS public interface features
-- **docs(log)**: Log entries in /logs/plan/
+- **docs(log)**: Log entries in /logs/
 - **docs(plan)**: Plan updates in /plan/
 
 ### ✅ Ejemplos Correctos
@@ -226,13 +226,13 @@ COMMIT_TYPE="feat"
 
 if git diff --cached --name-only | grep -q "test"; then
     COMMIT_TYPE="test"
-elif git diff --cached --name-only | grep -q "README\|docs" && ! git diff --cached --name-only | grep -q "logs/plan\|plan/"; then
+elif git diff --cached --name-only | grep -q "README\|docs" && ! git diff --cached --name-only | grep -q "^logs/.*\.md$\|plan/"; then
     COMMIT_TYPE="docs"
 elif git diff --cached --name-only | grep -q "fix\|bug"; then
     COMMIT_TYPE="fix"
 elif git diff --cached --name-only | grep -q "atlas.*\.py\|atlas.*\.js\|atlas.*\.yaml"; then
     COMMIT_TYPE="feat(atlas)"
-elif git diff --cached --name-only | grep -q "logs/plan"; then
+elif git diff --cached --name-only | grep -q "^logs/.*\.md$"; then
     COMMIT_TYPE="docs(log)"
 elif git diff --cached --name-only | grep -q "plan/"; then
     COMMIT_TYPE="docs(plan)"

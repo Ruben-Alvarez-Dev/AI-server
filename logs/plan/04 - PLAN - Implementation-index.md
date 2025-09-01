@@ -6,7 +6,7 @@
 **Checkpoint → Log Entry → Implementation → Documentation Update → Commit (if applicable)**
 
 ### Log Naming Convention
-`/logs/plan/YYYY-MM-DD_HHMMSS_X.Y.Z_keyword.md`
+`/logs/YYYY-MM-DD_HHMMSS_X.Y.Z_keyword.md`
 
 ### Documentation Structure
 ```

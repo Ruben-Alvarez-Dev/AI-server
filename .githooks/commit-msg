@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# .githooks/commit-msg
+# Validates commit message format and disallows forbidden markers
+
+set -euo pipefail
+
+MSG_FILE="$1"
+HEADLINE=$(head -n1 "$MSG_FILE" | tr -d '\r')
+
+# Allowed types
+TYPE_PATTERN='^(feat|fix|refactor|docs|test|chore|feat\(atlas\)|docs\(log\)|docs\(plan\)):\s'
+
+if ! echo "$HEADLINE" | grep -Eq "$TYPE_PATTERN"; then
+  echo "❌ Formato de commit inválido. Usa: <type>: <description>"
+  echo "   Tipos permitidos: feat | fix | refactor | docs | test | chore | feat(atlas) | docs(log) | docs(plan)"
+  echo "   Línea detectada: '$HEADLINE'"
+  exit 1
+fi
+
+# Disallow AI/co-author markers
+if grep -qiE 'Co-Authored-By:|Claude|AI generated|🤖' "$MSG_FILE"; then
+  echo "❌ Marcadores de co-autoría o AI detectados: prohibido según rules"
+  exit 1
+fi
+
+exit 0

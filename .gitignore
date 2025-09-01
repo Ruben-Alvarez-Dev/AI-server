@@ -1,5 +1,8 @@
-# OLD VERSION - Do not commit
+# OLD VERSION - Do not commit (always ignore anywhere)
 OLD_VERSION/
+OLD_VERSION/*
+**/OLD_VERSION/
+**/OLD_VERSION/*
 
 # Python
 __pycache__/
@@ -67,8 +70,8 @@ lerna-debug.log*
 # Project specific
 /models/*.gguf
 /models/**/*.gguf
-/logs/*.log
-/logs/**/*.log
+# Directory rules: do NOT ignore /logs/ (full traceability)
+# Removed /logs/*.log and /logs/**/*.log per project policy
 /var/run/*
 /var/state/*
 !.gitkeep

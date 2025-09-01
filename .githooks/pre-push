@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# .githooks/pre-push
+# Enforce single-author, main-only, granular pushes, and no co-authors.
+
+set -euo pipefail
+
+REMOTE_NAME="$1"; REMOTE_URL="$2"
+
+# Read refs from STDIN
+while read -r local_ref local_sha remote_ref remote_sha; do
+  # Only enforce on main
+  if [ "$local_ref" != "refs/heads/main" ]; then
+    echo "❌ Solo se permite push de 'main' (ref: $local_ref)"
+    exit 1
+  fi
+
+  # Determine commit range to push
+  RANGE="${remote_sha}..${local_sha}"
+  if [ "$remote_sha" = "0000000000000000000000000000000000000000" ]; then
+    # New branch on remote; push entire local history (rare for main)
+    RANGE="$local_sha"
+  fi
+
+  # Thresholds for granular pushes
+  MAX_LINES_CHANGED=${MAX_LINES_CHANGED:-1500}
+  MAX_FILES_CHANGED=${MAX_FILES_CHANGED:-50}
+
+  for commit in $(git rev-list $RANGE); do
+    # 1) Single author enforcement
+    author_name=$(git show -s --format=%an "$commit")
+    author_email=$(git show -s --format=%ae "$commit")
+    if [ "$author_name" != "Ruben-Alvarez-Dev" ] || [ "$author_email" != "ruben.alvarez.dev@gmail.com" ]; then
+      echo "❌ Commit $commit con autor distinto a Ruben-Alvarez-Dev <ruben.alvarez.dev@gmail.com>"
+      exit 1
+    fi
+
+    # 2) No co-authors or AI notes
+    if git show -s --format=%B "$commit" | grep -qiE 'Co-Authored-By:|Claude|AI generated|🤖'; then
+      echo "❌ Commit $commit contiene co-autores o notas AI (prohibido)"
+      exit 1
+    fi
+
+    # 3) No merge commits (linear history)
+    parents=$(git cat-file -p "$commit" | grep -c '^parent ' || true)
+    if [ "$parents" -gt 1 ]; then
+      echo "❌ Commit $commit es un merge commit. Historia debe ser lineal."
+      exit 1
+    fi
+
+    # 4) Commit message format
+    subject=$(git show -s --format=%s "$commit")
+    if ! echo "$subject" | grep -Eq '^(feat|fix|refactor|docs|test|chore|feat\(atlas\)|docs\(log\)|docs\(plan\)):\s'; then
+      echo "❌ Commit $commit con mensaje inválido: '$subject'"
+      exit 1
+    fi
+
+    # 5) Granularity: size limits per commit
+    files_changed=$(git show --name-only --pretty=format: "$commit" | tail -n +2 | wc -l | tr -d ' ')
+    lines_changed=$(git show --numstat --format= "$commit" | awk '{a+=$1;b+=$2} END{print a+b+0}')
+    if [ "$files_changed" -gt "$MAX_FILES_CHANGED" ] || [ "$lines_changed" -gt "$MAX_LINES_CHANGED" ]; then
+      echo "❌ Commit $commit demasiado grande (files=$files_changed, lines=$lines_changed). Mantén pushes granulares."
+      echo "   Ajusta umbrales con env: MAX_FILES_CHANGED, MAX_LINES_CHANGED si es necesario."
+      exit 1
+    fi
+  done
+done
+
+echo "✅ Pre-push: Validaciones OK (autoría única y granularidad)"
+exit 0
+

@@ -1,0 +1,24 @@
+2025-09-01 14:46:01.664+0000 INFO  Running in daemon mode, all <Console> appenders will be suppressed:
+2025-09-01 14:46:01.666+0000 INFO  Removing console appender 'ConsoleAppender' with target 'SYSTEM_OUT'.
+2025-09-01 14:46:01.667+0000 INFO  Logging config in use: File '/Users/server/Code/AI-projects/AI-server/services/storage/neo4j/neo4j-community-5.23.0/conf/user-logs.xml'
+2025-09-01 14:46:01.669+0000 INFO  Starting...
+2025-09-01 14:46:02.249+0000 INFO  This instance is ServerId{c614c79c} (c614c79c-9787-45a5-9613-13f0027d961b)
+2025-09-01 14:46:02.876+0000 INFO  ======== Neo4j 5.23.0 ========
+2025-09-01 14:46:04.813+0000 INFO  Anonymous Usage Data is being sent to Neo4j, see https://neo4j.com/docs/usage-data/
+2025-09-01 14:46:04.837+0000 INFO  Bolt enabled on localhost:7687.
+2025-09-01 14:46:05.135+0000 INFO  HTTP enabled on localhost:7474.
+2025-09-01 14:46:05.136+0000 INFO  Remote interface available at http://localhost:7474/
+2025-09-01 14:46:05.137+0000 INFO  id: 65BC16B6764D4541BBEC3AFCBA3B3E85044C5B81ABD3BCACD82A38A50987924F
+2025-09-01 14:46:05.137+0000 INFO  name: system
+2025-09-01 14:46:05.137+0000 INFO  creationDate: 2025-09-01T14:46:03.604Z
+2025-09-01 14:46:05.137+0000 INFO  Started.
+2025-09-01 14:46:11.435+0000 ERROR Client triggered an unexpected error [Neo.DatabaseError.Schema.ConstraintCreationFailed]: Unable to create Constraint( type='NODE PROPERTY EXISTENCE', schema=(:Entity {name}) ):
+Property existence constraint requires Neo4j Enterprise Edition. Note that only the first found violation is shown., reference 955edb8b-6f27-4274-8e49-762d781a58ba.
+2025-09-01 14:46:11.448+0000 ERROR Client triggered an unexpected error [Neo.DatabaseError.Schema.ConstraintCreationFailed]: Unable to create Constraint( type='NODE PROPERTY EXISTENCE', schema=(:Concept {name}) ):
+Property existence constraint requires Neo4j Enterprise Edition. Note that only the first found violation is shown., reference 3ed3ea04-721f-4c5c-a34f-bb7b3f9a3c12.
+2025-09-01 14:50:47.069+0000 WARN  WARNING: A restricted method in java.lang.foreign.Linker has been called
+WARNING: java.lang.foreign.Linker::downcallHandle has been called by the unnamed module
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for this module
+
+
+2025-09-01 14:50:47.119+0000 WARN  Java vector incubator module is not readable. For optimal vector performance, pass '--add-modules jdk.incubator.vector' to enable Vector API.
