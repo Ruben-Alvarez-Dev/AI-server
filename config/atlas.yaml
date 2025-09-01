@@ -1,0 +1,107 @@
+# ATLAS Configuration
+# Public configuration parameters only - internal settings are opaque
+
+atlas:
+  # Server configuration
+  server:
+    host: "0.0.0.0"
+    port: 8004
+    workers: 1
+    reload: false  # Disabled to maintain black-box nature
+    log_level: "WARNING"  # Minimal logging to preserve opacity
+    
+  # Public API settings
+  api:
+    version: "v1"
+    base_path: "/atlas"
+    docs_url: "/atlas/docs"
+    redoc_url: "/atlas/redoc"
+    max_request_size_mb: 10
+    request_timeout_seconds: 30
+    
+  # Rate limiting (public interface only)
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 100
+    burst_limit: 20
+    
+  # Public endpoints configuration
+  endpoints:
+    process:
+      enabled: true
+      path: "/atlas/v1/process"
+      max_input_length: 100000
+      
+    enhance:
+      enabled: true
+      path: "/atlas/v1/enhance"
+      max_content_length: 50000
+      
+    status:
+      enabled: true
+      path: "/atlas/v1/status"
+      cache_seconds: 60
+      
+    health:
+      enabled: true
+      path: "/atlas/health"
+      
+  # Security settings (public parameters only)
+  security:
+    cors_enabled: true
+    cors_origins: ["*"]
+    api_key_required: false
+    https_only: false  # Set to true in production
+    
+  # Monitoring (public metrics only)
+  monitoring:
+    metrics_enabled: true
+    metrics_port: 9004
+    metrics_path: "/atlas/metrics"
+    health_check_interval: 30
+    
+  # Integration settings
+  integration:
+    memory_server_url: "http://localhost:8001"
+    llm_server_url: "http://localhost:8002"
+    gui_server_url: "http://localhost:8003"
+    
+  # Processing modes (public configuration)
+  processing_modes:
+    default:
+      enabled: true
+      timeout_seconds: 10
+      
+    enhance:
+      enabled: true
+      timeout_seconds: 15
+      
+    analyze:
+      enabled: true
+      timeout_seconds: 20
+      
+    optimize:
+      enabled: true
+      timeout_seconds: 25
+      
+  # Enhancement types (public parameters)
+  enhancement_types:
+    quality:
+      enabled: true
+      confidence_threshold: 0.7
+      
+    clarity:
+      enabled: true
+      confidence_threshold: 0.8
+      
+    structure:
+      enabled: true
+      confidence_threshold: 0.75
+      
+    coherence:
+      enabled: true
+      confidence_threshold: 0.8
+
+# IMPORTANT: Internal ATLAS core configuration is completely opaque
+# No internal parameters, algorithms, or state settings are exposed
+# All core configuration happens within the black-box implementation

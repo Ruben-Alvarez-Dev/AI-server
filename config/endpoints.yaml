@@ -89,32 +89,48 @@ endpoints:
         middleware: ["auth"]
         
   # ATLAS Interface endpoints (PUBLIC ONLY)
-  atlas_interface:
+  atlas_server:
     base: "http://localhost:8004"
     endpoints:
       - path: "/atlas/v1/process"
         method: "POST"
-        handler: "atlas_process"
-        middleware: ["auth", "rate_limit"]
+        handler: "atlas_process_endpoint"
+        middleware: ["rate_limit"]
+        timeout_seconds: 30
         description: "ATLAS public processing interface"
         
-      - path: "/atlas/v1/enhance"
+      - path: "/atlas/v1/enhance" 
         method: "POST"
-        handler: "atlas_enhance"
-        middleware: ["auth", "rate_limit"]
+        handler: "atlas_enhance_endpoint"
+        middleware: ["rate_limit"]
+        timeout_seconds: 30
         description: "ATLAS public enhancement interface"
         
       - path: "/atlas/v1/status"
         method: "GET"
-        handler: "atlas_status"
+        handler: "atlas_status_endpoint"
         middleware: ["cache"]
+        timeout_seconds: 5
         description: "ATLAS public status endpoint"
         
       - path: "/atlas/health"
         method: "GET"
-        handler: "atlas_health"
+        handler: "atlas_health_endpoint"
         middleware: []
+        timeout_seconds: 5
         description: "ATLAS public health check"
+        
+      - path: "/atlas/docs"
+        method: "GET"
+        handler: "openapi_docs"
+        middleware: []
+        description: "ATLAS OpenAPI documentation"
+        
+      - path: "/atlas/metrics"
+        method: "GET"
+        handler: "prometheus_metrics"
+        middleware: []
+        description: "ATLAS public metrics endpoint"
         
   # Shared endpoints
   shared:
