@@ -26,28 +26,28 @@
 
 ## 4.2 Qdrant Vector Database (8 tasks)
 
-- [ ] **4.2.1 Download Qdrant embedded binary**  
+- [x] **4.2.1 Download Qdrant embedded binary**  
   Download Qdrant binary for macOS ARM64 from GitHub releases for embedded vector search capabilities. Choose the embedded version to avoid running separate server process. Verify checksum for integrity.
 
-- [ ] **4.2.2 Configure embedded mode**  
+- [x] **4.2.2 Configure embedded mode**  
   Configure Qdrant to run embedded within Python process, eliminating network overhead and simplifying deployment. Set up in-process communication for maximum performance. This mode is ideal for single-node deployments.
 
-- [ ] **4.2.3 Set memory limits (25% available)**  
+- [x] **4.2.3 Set memory limits (25% available)**  
   Configure Qdrant to use maximum 25% of available RAM for vector indexes, with the rest memory-mapped from disk. This balances search performance with memory availability for other components. Include cache size configuration.
 
-- [ ] **4.2.4 Configure HNSW parameters**  
+- [x] **4.2.4 Configure HNSW parameters**  
   Tune HNSW index parameters: M=16 for connectivity, ef_construct=100 for index quality, ef=50 for search quality. These settings balance accuracy with performance for our embedding dimensions. Document trade-offs for tuning.
 
-- [ ] **4.2.5 Enable scalar quantization**  
+- [x] **4.2.5 Enable scalar quantization**  
   Enable scalar quantization to reduce memory usage by 4x with minimal accuracy loss. This allows storing more vectors in RAM for faster searches. Configure quantization parameters based on embedding characteristics.
 
-- [ ] **4.2.6 Setup persistence directory**  
+- [x] **4.2.6 Setup persistence directory**  
   Create /services/storage/data/qdrant/ for persistent storage of vectors and metadata. Configure snapshots and write-ahead logging for durability. Include backup procedures in documentation.
 
-- [ ] **4.2.7 Create initial collections**  
+- [x] **4.2.7 Create initial collections**  
   Set up collections for different embedding types: code, documents, summaries with appropriate vector dimensions. Configure metadata fields for filtering. Include collection versioning strategy.
 
-- [ ] **4.2.8 Test vector operations**  
+- [x] **4.2.8 Test vector operations**  
   Insert test vectors and verify search, update, and delete operations work correctly. Benchmark search performance with realistic data volumes. Document performance characteristics and scaling limits.
 
 ## 4.3 Neo4j Embedded Setup (8 tasks)
@@ -135,6 +135,6 @@
 
 ## Progress Summary
 - **Total Tasks**: 39
-- **Completed**: 7/39
-- **Current Section**: 4.2 Qdrant Vector Database
-- **Next Checkpoint**: 4.2.1
+- **Completed**: 15/39
+- **Current Section**: 4.3 Neo4j Embedded Setup
+- **Next Checkpoint**: 4.3.1

@@ -90,6 +90,23 @@ class QdrantCollections:
             # Get optimized HNSW configuration for use case
             hnsw_config = get_optimized_config_for_use_case(use_case)
             
+            # Prepare optional scalar quantization config (int8, quantile per use case)
+            quant_config = None
+            try:
+                from quantization_config import QuantizationManager
+                quantiles = QuantizationManager.get_use_case_quantiles()
+                quantile = float(quantiles.get(use_case, 0.99))
+                # Import model types lazily to avoid hard dependency during static analysis
+                from qdrant_client.models import ScalarQuantization, ScalarType
+                quant_config = ScalarQuantization(
+                    size=None,            # inferred
+                    quantile=quantile,    # per-use-case
+                    always_ram=True,      # keep quantized in RAM
+                    type=ScalarType.INT8  # 8-bit
+                )
+            except Exception:
+                quant_config = None
+
             # Create collection with optimized settings
             client.create_collection(
                 collection_name=collection_name,
@@ -97,8 +114,8 @@ class QdrantCollections:
                     size=vector_size,
                     distance=distance
                 ),
-                hnsw_config=hnsw_config
-                # Note: Quantization will be added when we insert vectors
+                hnsw_config=hnsw_config,
+                quantization_config=quant_config if quant_config else None
             )
             
             print(f"✅ Created collection '{collection_name}' ({vector_size}D, {distance.value}, {use_case})")
