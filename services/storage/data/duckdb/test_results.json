@@ -1,0 +1,104 @@
+{
+  "test_timestamp": "2025-09-01T15:15:05.157276",
+  "connection_tests": {
+    "hierarchy_data": {
+      "status": "SUCCESS",
+      "connection_time_ms": 3.3,
+      "result": "Connection successful"
+    },
+    "metrics_data": {
+      "status": "SUCCESS",
+      "connection_time_ms": 2.75,
+      "result": "Connection successful"
+    },
+    "logs_data": {
+      "status": "SUCCESS",
+      "connection_time_ms": 2.99,
+      "result": "Connection successful"
+    },
+    "rag_data": {
+      "status": "SUCCESS",
+      "connection_time_ms": 2.53,
+      "result": "Connection successful"
+    },
+    "system_data": {
+      "status": "SUCCESS",
+      "connection_time_ms": 2.48,
+      "result": "Connection successful"
+    }
+  },
+  "insert_performance": {
+    "hierarchy_inserts": {
+      "records": 100,
+      "time_ms": 44.77,
+      "records_per_second": 2233.79
+    },
+    "metrics_inserts": {
+      "records": 1000,
+      "time_ms": 452.23,
+      "records_per_second": 2211.24
+    }
+  },
+  "query_performance": {
+    "hierarchy_queries": {
+      "error": "Binder Error: Cannot compare values of type TIMESTAMP and type TIMESTAMP WITH TIME ZONE - an explicit cast is required\nLINE 4:                 WHERE created_at >= NOW() - INTERVAL '1 hour'\n                                         ^"
+    },
+    "timeseries_aggregation": {
+      "time_ms": 1.22,
+      "metrics": [
+        {
+          "name": "test_metric_3",
+          "count": 100,
+          "min": 3.0,
+          "max": 993.0,
+          "avg": 498.0,
+          "median": 498.0
+        },
+        {
+          "name": "test_metric_8",
+          "count": 100,
+          "min": 8.0,
+          "max": 998.0,
+          "avg": 503.0,
+          "median": 503.0
+        },
+        {
+          "name": "test_metric_0",
+          "count": 100,
+          "min": 0.0,
+          "max": 990.0,
+          "avg": 495.0,
+          "median": 495.0
+        },
+        {
+          "name": "test_metric_2",
+          "count": 100,
+          "min": 2.0,
+          "max": 992.0,
+          "avg": 497.0,
+          "median": 497.0
+        },
+        {
+          "name": "test_metric_7",
+          "count": 100,
+          "min": 7.0,
+          "max": 997.0,
+          "avg": 502.0,
+          "median": 502.0
+        }
+      ]
+    }
+  },
+  "memory_tests": {
+    "configuration": {
+      "memory_limit": "23.8 GiB",
+      "temp_directory": "/tmp/duckdb",
+      "threads": 4
+    },
+    "memory_spill_test": {
+      "rows_processed": 1000000,
+      "time_ms": 0.39,
+      "status": "SUCCESS"
+    }
+  }
+}
